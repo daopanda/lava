@@ -28861,7 +28861,6 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
-//
 
 
 
@@ -28879,8 +28878,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wrapper"}},[_c('header-view'),_vm._v(" "),_c('div',{attrs:{"id":"main"}},[_vm._m(0),_vm._v(" "),_c('div',{attrs:{"id":"form-variants"}},[_c('router-link',{staticClass:"fv-link-left ",attrs:{"to":"/singin"}},[_vm._v("SING IN")]),_vm._v(" "),_c('router-link',{staticClass:"fv-link-rigth",attrs:{"to":"/singup"}},[_vm._v("SING UP")]),_vm._v(" "),_c('form',{staticClass:"form"},[_c('input-email'),_vm._v(" "),_c('input-password'),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING IN NOW"}})],1)],1)])],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v("Welcome "),_c('span',{staticClass:"redline"},[_vm._v("to LAVA")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wrapper"}},[_c('header-view'),_vm._v(" "),_c('div',{attrs:{"id":"main"}},[_vm._m(0),_vm._v(" "),_c('div',{attrs:{"id":"form-variants"}},[_c('router-link',{staticClass:"fv-link-left ",attrs:{"to":"/singin"}},[_vm._v("SING IN")]),_vm._v(" "),_c('router-link',{staticClass:"fv-link-rigth",attrs:{"to":"/singup"}},[_vm._v("SING UP")]),_vm._v(" "),_vm._m(1)],1)])],1)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v("Welcome "),_c('span',{staticClass:"redline"},[_vm._v("to LAVA")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form"},[_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING IN NOW"}})])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
