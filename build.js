@@ -11,7 +11,7 @@ var VeeValidate = require('vee-validate')
 // Pages
 var singin = require('./views/auth/singin-view.vue')
 var singup = require('./views/auth/singup-view.vue')
-
+var lava = require('./views/app/lava-index.vue')
 // Template blocks
 var header_view = require('./views/auth/header-view.vue')
 
@@ -32,7 +32,7 @@ var router = new VueRouter({
 	routes: [
 	{ 'path': '/singin', component: singin},
 	{ 'path': '/singup', component: singup},
-	{ 'path': '/', component: singin },	
+	{ 'path': '/', component: lava },	
 	]
 })
 
@@ -42,8 +42,8 @@ var store = {
   	
   	email: '',
   	password:'',
-  	name: '',
-  	lastname: '',
+  	first_name: '',
+  	last_name: '',
   	sex: 0,
   	birthdate: '',
   	language: 'en'
@@ -52,7 +52,8 @@ var store = {
   api: {
   	
   	token: '',
-  	userRegistration: 'https://api.lava.top/api.php?method=users.register'
+  	userRegistration: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.register',
+  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login'
   }
 }
 
@@ -74,8 +75,8 @@ Vue.use(VeeValidate);
 
 // Registration components
 Vue.component('header-view', header_view)
-
-
+Vue.component('lava', lava)
+Vue.component('singin', singin)
 Vue.component('singup-form', singup_form )
 
 new Vue({
@@ -85,12 +86,15 @@ new Vue({
 	data:{
 		
 		
+	},
+	created:function(){
+		// прочитать cookie
 	}
 
 	
 
 })
-},{"./views/auth/header-view.vue":10,"./views/auth/singin-view.vue":11,"./views/auth/singup-view.vue":12,"./views/elements/singup-form-component.vue":13,"vee-validate":4,"vue-resource":6,"vue-router":7,"vue/dist/vue.js":8}],2:[function(require,module,exports){
+},{"./views/app/lava-index.vue":10,"./views/auth/header-view.vue":11,"./views/auth/singin-view.vue":12,"./views/auth/singup-view.vue":13,"./views/elements/singup-form-component.vue":14,"vee-validate":4,"vue-resource":6,"vue-router":7,"vue/dist/vue.js":8}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 // shim for using process in browser
@@ -28809,6 +28813,65 @@ module.exports = Vue;
 //
 //
 //
+
+
+
+module.exports = {
+	data: function() {
+		return {
+			name: '',
+			lastname: ''
+		}
+	
+	},
+	methods: {
+		logout: function(){
+			// удалить cookie
+			this.$store.api.token = ''
+			this.$router.replace('/singin')
+		}
+
+	},
+	created: function(){
+		if(this.$store.api.token.length === 0){
+			console.log('not loging')
+			this.$router.replace('/singin')
+		}else{
+			this.name = this.$store.user.first_name
+			this.lastname = this.$store.user.last_name
+		}
+
+	}
+
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"lava-wrapper"}},[_c('div',[_vm._v(_vm._s(_vm.name)+" ")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.lastname))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.$store.api.token))]),_vm._v(" "),_c('button',{on:{"click":_vm.logout}},[_vm._v("выход")])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7a2f8939", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-7a2f8939", __vue__options__)
+  }
+})()}
+},{"vue":9,"vue-hot-reload-api":5}],11:[function(require,module,exports){
+;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 
 module.exports = {
@@ -28836,7 +28899,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3aa71038", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],11:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":5}],12:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -28886,7 +28949,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-068b0b46", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],12:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":5}],13:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -28913,7 +28976,7 @@ module.exports = {
 	
 	data: function() {
 		return {
-			step: 1
+			
 			
 		}
 
@@ -28937,8 +29000,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3ff484b2", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],13:[function(require,module,exports){
+},{"vue":9,"vue-hot-reload-api":5}],14:[function(require,module,exports){
 ;(function(){
+//
 //
 //
 //
@@ -29042,6 +29106,7 @@ module.exports = {
             activeWoman: false
             
             
+            
         }
 
     },
@@ -29101,23 +29166,54 @@ module.exports = {
             },
 
             registerNewUser: function(){
-                console.log('registerStart')
-                this.$http.post(this.$store.api.userRegistration , this.$store.user, function(response)  {
-                    console.log('registerEnd')
-                    console.log(response)
-                    });
-            },
+                
+                this.$http.post(this.$store.api.userRegistration , this.$store.user, {emulateJSON: true}).then( function(response)  {
+                    // войти пользователем и получить токен
+                    this.$http.post(this.$store.api.userlogin , {email: this.$store.user.email, password: this.$store.user.password},{emulateJSON: true} ).then( function(response)  {
 
+                        this.$store.api.token = response.data.result
+
+                        this.$router.replace('/')
+
+                    })
+
+                      
+                   
+                    })
+            },
 
            validateFirstStep: function(e){
                 e.preventDefault()       
                 
  
                 this.$validator.validate('email').then((result) => {
-                        this.validEmail = result
-                            if(this.validEmail && this.validPassword){
-                            this.step += 1
-                }
+                        
+                        this.$http.post(this.$store.api.userRegistration , { email: this.$store.user.email},{emulateJSON: true}).then( function(response)  {
+
+
+                                if(response.data.message === "email_incorrect"){
+                                    this.errors.add({field:"email", msg: "Email incorrect"})
+                                }else if(response.data.message === "email_exists"){
+                                    this.errors.add({field:"email", msg: "Email already used"})
+                                }else{
+                                    this.validEmail = true
+                                    if(this.validEmail && this.validPassword){
+                                    this.step += 1
+                                    }
+                                }
+                                
+                                           
+                            
+                            
+                            
+                            
+                        },function(error){
+                            
+                              // ошибка от сервера
+                        })
+
+
+                      
                  })
                 this.$validator.validate('password').then((result) => {
                         this.validPassword = result
@@ -29157,10 +29253,13 @@ module.exports = {
 
 
                 this.$validator.validateAll().then((result) => {
-                        console.log('birthdate')
                         
-                        console.log('sending start')
+                       
+                        this.$store.user.birthdate = this.$store.user.birthdate.split('.').join('-');
+                        
                         this.registerNewUser()
+                       
+                        
                     })
 
 
@@ -29177,7 +29276,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form "},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 1),expression:"step === 1"}],attrs:{"method":"post"}},[_c('div',{class:[{ 'is_error': _vm.errors.has('email')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("email\n\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.email),expression:"$store.user.email"},{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"}],staticClass:"form-input",attrs:{"type":"text","name":"email","placeholder":"your@email.com","maxlength":"80"},domProps:{"value":(_vm.$store.user.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "email", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('password')}, 'custom-input', 'ci-password' ]},[_c('label',{staticClass:"form-label"},[_vm._v(" password\n                        "),((_vm.showPassword)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required'),expression:"'required'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"checkbox"},domProps:{"checked":Array.isArray(_vm.$store.user.password)?_vm._i(_vm.$store.user.password,null)>-1:(_vm.$store.user.password)},on:{"change":function($event){var $$a=_vm.$store.user.password,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.$store.user, "password", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.$store.user, "password", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.$store.user, "password", $$c)}}}}):((_vm.showPassword)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required'),expression:"'required'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"radio"},domProps:{"checked":_vm._q(_vm.$store.user.password,null)},on:{"change":function($event){_vm.$set(_vm.$store.user, "password", null)}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required'),expression:"'required'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":_vm.showPassword},domProps:{"value":(_vm.$store.user.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "password", $event.target.value)}}})]),_vm._v(" "),_c('span',{staticClass:"button-check_password",on:{"click":function($event){_vm.showPasswordflag = !_vm.showPasswordflag}}},[_vm._v("")])]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('router-link',{staticClass:"back_to_singin",attrs:{"to":"/singin"}},[_vm._v("Already have an account?")]),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING UP NOW"},on:{"click":_vm.validateFirstStep}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 2),expression:"step === 2"}]},[_c('div',{class:[{ 'is_error': _vm.errors.has('name')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.name),expression:"$store.user.name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"type":"text","name":"name","maxlength":"30"},domProps:{"value":(_vm.$store.user.name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "name", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('name'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('name')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('lastname')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("last name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.lastname),expression:"$store.user.lastname"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"name":"lastname","type":"text","maxlength":"30"},domProps:{"value":(_vm.$store.user.lastname)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "lastname", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('lastname'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('lastname')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"flex-wrapper"},[_c('div',{class:[{ 'is_error': _vm.errors.has('birthdate')}, 'custom-input', 'm__birthdate' ]},[_c('label',{staticClass:"form-label"},[_vm._v("birthdate\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.birthdate),expression:"$store.user.birthdate"},{name:"validate",rawName:"v-validate",value:('date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'),expression:"'date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'"}],staticClass:"form-input ",attrs:{"type":"text","name":"birthdate","placeholder":"1.1.2018"},domProps:{"value":(_vm.$store.user.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "birthdate", $event.target.value)}}})])]),_vm._v(" "),_c('div',{staticClass:"sex-wrapper"},[_c('div',{class:[{ 'selectSex': _vm.activeMan}, 'sex-checkbox' ],on:{"click":_vm.selectMan}},[_vm._v("")]),_vm._v(" "),_c('div',{class:[{ 'selectSex': _vm.activeWoman}, 'sex-checkbox' ],on:{"click":_vm.selectWoman}},[_vm._v("")])])]),_vm._v(" "),(_vm.errors.has('birthdate'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('birthdate')))]):_vm._e(),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"NEXT"},on:{"click":_vm.validateSecondStep}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 3),expression:"step === 3"}]},[_vm._v("\n             Upload image\n            ")])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form "},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 1),expression:"step === 1"}],attrs:{"method":"post"}},[_c('div',{class:[{ 'is_error': _vm.errors.has('email')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("email\n\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.email),expression:"$store.user.email"},{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"}],staticClass:"form-input",attrs:{"type":"text","name":"email","placeholder":"your@email.com","maxlength":"80"},domProps:{"value":(_vm.$store.user.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "email", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('password')}, 'custom-input', 'ci-password' ]},[_c('label',{staticClass:"form-label"},[_vm._v(" password\n                        "),((_vm.showPassword)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"checkbox"},domProps:{"checked":Array.isArray(_vm.$store.user.password)?_vm._i(_vm.$store.user.password,null)>-1:(_vm.$store.user.password)},on:{"change":function($event){var $$a=_vm.$store.user.password,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.$store.user, "password", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.$store.user, "password", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.$store.user, "password", $$c)}}}}):((_vm.showPassword)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"radio"},domProps:{"checked":_vm._q(_vm.$store.user.password,null)},on:{"change":function($event){_vm.$set(_vm.$store.user, "password", null)}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":_vm.showPassword},domProps:{"value":(_vm.$store.user.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "password", $event.target.value)}}})]),_vm._v(" "),_c('span',{staticClass:"button-check_password",on:{"click":function($event){_vm.showPasswordflag = !_vm.showPasswordflag}}},[_vm._v("")])]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('router-link',{staticClass:"back_to_singin",attrs:{"to":"/singin"}},[_vm._v("Already have an account?")]),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING UP NOW"},on:{"click":_vm.validateFirstStep}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 2),expression:"step === 2"}]},[_c('div',{class:[{ 'is_error': _vm.errors.has('name')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.first_name),expression:"$store.user.first_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"type":"text","name":"name","maxlength":"30"},domProps:{"value":(_vm.$store.user.first_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "first_name", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('name'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('name')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('lastname')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("last name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.last_name),expression:"$store.user.last_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"name":"lastname","type":"text","maxlength":"30"},domProps:{"value":(_vm.$store.user.last_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "last_name", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('lastname'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('lastname')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"flex-wrapper"},[_c('div',{class:[{ 'is_error': _vm.errors.has('birthdate')}, 'custom-input', 'm__birthdate' ]},[_c('label',{staticClass:"form-label"},[_vm._v("birthdate\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.birthdate),expression:"$store.user.birthdate"},{name:"validate",rawName:"v-validate",value:('date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'),expression:"'date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'"}],staticClass:"form-input ",attrs:{"type":"text","name":"birthdate","placeholder":"1.1.2018"},domProps:{"value":(_vm.$store.user.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "birthdate", $event.target.value)}}})])]),_vm._v(" "),_c('div',{staticClass:"sex-wrapper"},[_c('div',{class:[{ 'selectSex': _vm.activeMan }, 'sex-checkbox' ],on:{"click":_vm.selectMan}},[_vm._v("")]),_vm._v(" "),_c('div',{class:[{ 'selectSex': _vm.activeWoman }, 'sex-checkbox' ],on:{"click":_vm.selectWoman}},[_vm._v("")])])]),_vm._v(" "),(_vm.errors.has('birthdate'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('birthdate')))]):_vm._e(),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"NEXT"},on:{"click":_vm.validateSecondStep}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 3),expression:"step === 3"}]})])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

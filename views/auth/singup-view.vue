@@ -23,7 +23,7 @@
 		
 		data: function() {
 			return {
-				step: 1
+				
 				
 			}
 
