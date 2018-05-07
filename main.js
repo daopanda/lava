@@ -7,6 +7,7 @@ var VueResource = require("vue-resource")
 var VueRouter = require('vue-router')
 var VueResource = require('vue-resource')
 var VeeValidate = require('vee-validate')
+var VueCookie = require('vue-cookie')
 // Pages
 var singin = require('./views/auth/singin-view.vue')
 var singup = require('./views/auth/singup-view.vue')
@@ -15,16 +16,13 @@ var lava = require('./views/app/lava-index.vue')
 var header_view = require('./views/auth/header-view.vue')
 
 // Components
-
-
-
 var singup_form = require('./views/elements/singup-form-component.vue')
 
 // Registration plugins 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-Vue.use(VueResource)
+Vue.use(VueCookie)
 
 // Routing
 var router = new VueRouter({
@@ -50,11 +48,16 @@ var store = {
   },
   api: {
   	
-  	token: '',
+  	token: false,
   	userRegistration: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.register',
-  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login'
+  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login',
+  	userlogout: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.logout',
+  	userobject: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.getInfo'
   }
 }
+
+Vue.use(VueResource)
+
 
 
 
@@ -88,6 +91,7 @@ new Vue({
 	},
 	created:function(){
 		// прочитать cookie
+		
 	}
 
 	

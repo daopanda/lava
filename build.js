@@ -8,6 +8,7 @@ var VueResource = require("vue-resource")
 var VueRouter = require('vue-router')
 var VueResource = require('vue-resource')
 var VeeValidate = require('vee-validate')
+var VueCookie = require('vue-cookie')
 // Pages
 var singin = require('./views/auth/singin-view.vue')
 var singup = require('./views/auth/singup-view.vue')
@@ -16,16 +17,13 @@ var lava = require('./views/app/lava-index.vue')
 var header_view = require('./views/auth/header-view.vue')
 
 // Components
-
-
-
 var singup_form = require('./views/elements/singup-form-component.vue')
 
 // Registration plugins 
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-Vue.use(VueResource)
+Vue.use(VueCookie)
 
 // Routing
 var router = new VueRouter({
@@ -51,11 +49,16 @@ var store = {
   },
   api: {
   	
-  	token: '',
+  	token: false,
   	userRegistration: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.register',
-  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login'
+  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login',
+  	userlogout: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.logout',
+  	userobject: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.getInfo'
   }
 }
+
+Vue.use(VueResource)
+
 
 
 
@@ -89,12 +92,13 @@ new Vue({
 	},
 	created:function(){
 		// прочитать cookie
+		
 	}
 
 	
 
 })
-},{"./views/app/lava-index.vue":10,"./views/auth/header-view.vue":11,"./views/auth/singin-view.vue":12,"./views/auth/singup-view.vue":13,"./views/elements/singup-form-component.vue":14,"vee-validate":4,"vue-resource":6,"vue-router":7,"vue/dist/vue.js":8}],2:[function(require,module,exports){
+},{"./views/app/lava-index.vue":12,"./views/auth/header-view.vue":13,"./views/auth/singin-view.vue":14,"./views/auth/singup-view.vue":15,"./views/elements/singup-form-component.vue":16,"vee-validate":5,"vue-cookie":6,"vue-resource":8,"vue-router":9,"vue/dist/vue.js":10}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 // shim for using process in browser
@@ -283,6 +287,160 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],4:[function(require,module,exports){
+/*!
+ * tiny-cookie - A tiny cookie manipulation plugin
+ * https://github.com/Alex1990/tiny-cookie
+ * Under the MIT license | (c) Alex Chao
+ */
+
+!(function(root, factory) {
+
+  // Uses CommonJS, AMD or browser global to create a jQuery plugin.
+  // See: https://github.com/umdjs/umd
+  if (typeof define === 'function' && define.amd) {
+    // Expose this plugin as an AMD module. Register an anonymous module.
+    define(factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS module
+    module.exports = factory();
+  } else {
+    // Browser globals 
+    root.Cookie = factory();
+  }
+
+}(this, function() {
+
+  'use strict';
+
+  // The public function which can get/set/remove cookie.
+  function Cookie(key, value, opts) {
+    if (value === void 0) {
+      return Cookie.get(key);
+    } else if (value === null) {
+      Cookie.remove(key);
+    } else {
+      Cookie.set(key, value, opts);
+    }
+  }
+
+  // Check if the cookie is enabled.
+  Cookie.enabled = function() {
+    var key = '__test_key';
+    var enabled;
+
+    document.cookie = key + '=1';
+    enabled = !!document.cookie;
+
+    if (enabled) Cookie.remove(key);
+
+    return enabled;
+  };
+
+  // Get the cookie value by the key.
+  Cookie.get = function(key, raw) {
+    if (typeof key !== 'string' || !key) return null;
+
+    key = '(?:^|; )' + escapeRe(key) + '(?:=([^;]*?))?(?:;|$)';
+
+    var reKey = new RegExp(key);
+    var res = reKey.exec(document.cookie);
+
+    return res !== null ? (raw ? res[1] : decodeURIComponent(res[1])) : null;
+  };
+
+  // Get the cookie's value without decoding.
+  Cookie.getRaw = function(key) {
+    return Cookie.get(key, true);
+  };
+
+  // Set a cookie.
+  Cookie.set = function(key, value, raw, opts) {
+    if (raw !== true) {
+      opts = raw;
+      raw = false;
+    }
+    opts = opts ? convert(opts) : convert({});
+    var cookie = key + '=' + (raw ? value : encodeURIComponent(value)) + opts;
+    document.cookie = cookie;
+  };
+
+  // Set a cookie without encoding the value.
+  Cookie.setRaw = function(key, value, opts) {
+    Cookie.set(key, value, true, opts);
+  };
+
+  // Remove a cookie by the specified key.
+  Cookie.remove = function(key) {
+    Cookie.set(key, 'a', { expires: new Date() });
+  };
+
+  // Helper function
+  // ---------------
+
+  // Escape special characters.
+  function escapeRe(str) {
+    return str.replace(/[.*+?^$|[\](){}\\-]/g, '\\$&');
+  }
+
+  // Convert an object to a cookie option string.
+  function convert(opts) {
+    var res = '';
+
+    for (var p in opts) {
+      if (opts.hasOwnProperty(p)) {
+
+        if (p === 'expires') {
+          var expires = opts[p];
+          if (typeof expires !== 'object') {
+            expires += typeof expires === 'number' ? 'D' : '';
+            expires = computeExpires(expires);
+          }
+          opts[p] = expires.toUTCString();
+        }
+
+        if (p === 'secure') {
+          if (opts[p]) {
+            res += ';' + p;
+          }
+
+          continue;
+        }
+
+        res += ';' + p + '=' + opts[p];
+      }
+    }
+
+    if (!opts.hasOwnProperty('path')) {
+      res += ';path=/';
+    }
+
+    return res;
+  }
+
+  // Return a future date by the given string.
+  function computeExpires(str) {
+    var expires = new Date();
+    var lastCh = str.charAt(str.length - 1);
+    var value = parseInt(str, 10);
+
+    switch (lastCh) {
+      case 'Y': expires.setFullYear(expires.getFullYear() + value); break;
+      case 'M': expires.setMonth(expires.getMonth() + value); break;
+      case 'D': expires.setDate(expires.getDate() + value); break;
+      case 'h': expires.setHours(expires.getHours() + value); break;
+      case 'm': expires.setMinutes(expires.getMinutes() + value); break;
+      case 's': expires.setSeconds(expires.getSeconds() + value); break;
+      default: expires = new Date(str);
+    }
+
+    return expires;
+  }
+
+  return Cookie;
+
+}));
+
+},{}],5:[function(require,module,exports){
 (function (process){
 /**
   * vee-validate v2.0.9
@@ -5383,7 +5541,54 @@ process.umask = function() { return 0; };
 })));
 
 }).call(this,require('_process'))
-},{"_process":3}],5:[function(require,module,exports){
+},{"_process":3}],6:[function(require,module,exports){
+(function () {
+    Number.isInteger = Number.isInteger || function (value) {
+        return typeof value === 'number' &&
+            isFinite(value) &&
+            Math.floor(value) === value;
+    };
+    var Cookie = require('tiny-cookie');
+
+    var VueCookie = {
+
+        install: function (Vue) {
+            Vue.prototype.$cookie = this;
+            Vue.cookie = this;
+        },
+        set: function (name, value, daysOrOptions) {
+            var opts = daysOrOptions;
+            if(Number.isInteger(daysOrOptions)) {
+                opts = {expires: daysOrOptions};
+            }
+            return Cookie.set(name, value, opts);
+        },
+
+        get: function (name) {
+            return Cookie.get(name);
+        },
+
+        delete: function (name, options) {
+            var opts = {expires: -1};
+            if(options !== undefined) {
+                opts = Object.assign(options, opts);
+            }
+            this.set(name, '', opts);
+        }
+    };
+
+    if (typeof exports == "object") {
+        module.exports = VueCookie;
+    } else if (typeof define == "function" && define.amd) {
+        define([], function(){ return VueCookie; })
+    } else if (window.Vue) {
+        window.VueCookie = VueCookie;
+        Vue.use(VueCookie);
+    }
+
+})();
+
+},{"tiny-cookie":4}],7:[function(require,module,exports){
 var Vue // late bind
 var version
 var map = (window.__VUE_HOT_MAP__ = Object.create(null))
@@ -5625,7 +5830,7 @@ exports.reload = tryWrap(function (id, options) {
   })
 })
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*!
  * vue-resource v1.5.0
  * https://github.com/pagekit/vue-resource
@@ -7184,7 +7389,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 module.exports = plugin;
 
-},{"got":2}],7:[function(require,module,exports){
+},{"got":2}],9:[function(require,module,exports){
 (function (process){
 /**
   * vue-router v3.0.1
@@ -9813,7 +10018,7 @@ if (inBrowser && window.Vue) {
 module.exports = VueRouter;
 
 }).call(this,require('_process'))
-},{"_process":3}],8:[function(require,module,exports){
+},{"_process":3}],10:[function(require,module,exports){
 (function (global){
 /*!
  * Vue.js v2.5.16
@@ -20764,7 +20969,7 @@ return Vue;
 })));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (process,global){
 /*!
  * Vue.js v2.5.16
@@ -28802,8 +29007,9 @@ if (inBrowser) {
 module.exports = Vue;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":3}],10:[function(require,module,exports){
+},{"_process":3}],12:[function(require,module,exports){
 ;(function(){
+//
 //
 //
 //
@@ -28820,25 +29026,51 @@ module.exports = {
 	data: function() {
 		return {
 			name: '',
-			lastname: ''
+			lastname: '',
+			userinfo: ''
 		}
 	
 	},
 	methods: {
 		logout: function(){
-			// удалить cookie
-			this.$store.api.token = ''
-			this.$router.replace('/singin')
+			
+			
+
+			this.$http.get(this.$store.api.userlogout,{headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {
+				
+					this.$store.api.token = ''
+					this.$cookie.delete('lava-token')
+					this.$router.replace('/singin')
+
+				})
+		
+		},
+		getUserInfo: function(){
+			this.$store.api.token = this.$cookie.get('lava-token')
+			
+			this.$http.get(this.$store.api.userobject,{headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {
+
+				this.userinfo = response.data.result
+				this.name = this.userinfo.first_name
+				this.lastname = this.userinfo.last_name
+				
+				
+
+			})
 		}
 
 	},
 	created: function(){
-		if(this.$store.api.token.length === 0){
-			console.log('not loging')
+		if(this.$cookie.get('lava-token')){
+			
+			
+			
+			this.getUserInfo()
+
+			
+		}else{				
+			
 			this.$router.replace('/singin')
-		}else{
-			this.name = this.$store.user.first_name
-			this.lastname = this.$store.user.last_name
 		}
 
 	}
@@ -28849,7 +29081,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"lava-wrapper"}},[_c('div',[_vm._v(_vm._s(_vm.name)+" ")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.lastname))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.$store.api.token))]),_vm._v(" "),_c('button',{on:{"click":_vm.logout}},[_vm._v("выход")])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"lava-wrapper"}},[_vm._v("\n\twait response from server\n\t"),_c('div',[_vm._v(_vm._s(_vm.name)+" ")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.lastname))]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.$store.api.token))]),_vm._v(" "),_c('button',{on:{"click":_vm.logout}},[_vm._v("выход")])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -28861,9 +29093,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-7a2f8939", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],11:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":7}],13:[function(require,module,exports){
 ;(function(){
-//
 //
 //
 //
@@ -28888,7 +29119,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{attrs:{"id":"top-panel"}},[_c('a',{attrs:{"href":"#","id":"logotype"}},[_c('img',{attrs:{"src":"imgs/logo.svg"}}),_vm._v("\n\tLAVA\n\t")])])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"header"},[_c('a',{staticClass:"logotype_link",attrs:{"href":"#"}},[_c('img',{attrs:{"src":"imgs/logo.svg"}}),_vm._v("\n\tLAVA\n\t")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -28899,7 +29130,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3aa71038", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],12:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":7}],14:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -28920,25 +29151,109 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-
-
-module.exports = {
-	data: function() {
-		return {
-			
-		}
 	
-	}
 
-}
+	module.exports = {
+		data: function() {
+			return {
+				showPasswordflag: true,
+				validEmail: false,
+				validPassword: false,
+				showPasswordflag: true,
+				emailValidationPreloader: false,
+				email: '',
+				password: '' 
+			}
+		
+		},
+		computed: {
+                showPassword: function () {
+
+                    // показывает или скрывает пароль
+
+                    return this.showPasswordflag ? 'password' : 'text'
+
+                   }
+               },
+		methods:{
+			validateLogin: function(e){
+                    // отмена отправки формы
+                    e.preventDefault()                       
+
+                    this.$validator.validateAll().then((result) => {
+
+                    this.emailValidationPreloader = true
+
+                    this.$http.post(this.$store.api.userlogin , {email: this.email, password: this.password, device: 'desktop'},{emulateJSON: true} ).then( function(response)  {
+
+                        this.emailValidationPreloader = false
+
+                        if(response.data.message === "login_fail"){
+
+                        // Генерирует ошибку если пароль не правильный
+
+                        this.errors.add({field:"email", msg: "Email or password incorrect"})
+                        this.errors.add({field:"password", msg: "Email or password incorrect"})
+                                      
+
+                        }else if(response.data.message === "user_banned"){
+
+                            this.errors.add({field:"email", msg: "This user banned"})
+
+                        }else if(response.data.message === "need_reg_auth"){
+
+                            this.errors.add({field:"email", msg: "Need confirm email"})
+
+                        }else{
+
+                            // Записывает token в $store
+                            this.$store.api.token = response.data.result
+                            //Устанавливает cookie
+                            this.$cookie.set('lava-token', this.$store.api.token, 1);
+                            // Убирает пароль
+                            this.password = 'none'
+
+                            // редирект на главную
+                            this.$router.replace('/')
+
+                            }
+                        })
+                    }) 
+                }
+		}
+	}
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wrapper"}},[_c('header-view'),_vm._v(" "),_c('div',{attrs:{"id":"main"}},[_vm._m(0),_vm._v(" "),_c('div',{attrs:{"id":"form-variants"}},[_c('router-link',{staticClass:"fv-link-left ",attrs:{"to":"/singin"}},[_vm._v("SING IN")]),_vm._v(" "),_c('router-link',{staticClass:"fv-link-rigth",attrs:{"to":"/singup"}},[_vm._v("SING UP")]),_vm._v(" "),_vm._m(1)],1)])],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v("Welcome "),_c('span',{staticClass:"redline"},[_vm._v("to LAVA")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form"},[_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING IN NOW"}})])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"auth_wrapper"},[_c('header-view'),_vm._v(" "),_c('div',{staticClass:"auth_main"},[_c('div',{staticClass:"auth_forms"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"auth-links--wrapper"},[_c('router-link',{staticClass:"auth-links",attrs:{"to":"/singin"}},[_vm._v("Sing in")]),_vm._v(" "),_c('router-link',{staticClass:"auth-links auth-links--right",attrs:{"to":"/singup"}},[_vm._v("Sing up")])],1),_vm._v(" "),_c('form',{staticClass:"form"},[_c('div',{class:[{ 'input-iserror': _vm.errors.has('email')}, {'input-preload' : _vm.emailValidationPreloader}, { 'input-issucces': _vm.validEmail },  'custom-input' ]},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_email"}},[_vm._v("email")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"},{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"}],staticClass:"form-input",attrs:{"type":"text","name":"email","placeholder":"your@email.com","maxlength":"80","id":"registration_email"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'input-iserror': _vm.errors.has('password')}, { 'input-issucces': _vm.validPassword }, 'custom-input', 'm--custom-input--password' ]},[_c('div',{staticClass:"input-password--wrapper"},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_password"}},[_vm._v(" password")]),_vm._v(" "),((_vm.showPassword)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":"checkbox"},domProps:{"checked":Array.isArray(_vm.password)?_vm._i(_vm.password,null)>-1:(_vm.password)},on:{"change":function($event){var $$a=_vm.password,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.password=$$a.concat([$$v]))}else{$$i>-1&&(_vm.password=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.password=$$c}}}}):((_vm.showPassword)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":"radio"},domProps:{"checked":_vm._q(_vm.password,null)},on:{"change":function($event){_vm.password=null}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":_vm.showPassword},domProps:{"value":(_vm.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.password=$event.target.value}}})]),_vm._v(" "),_c('div',{staticClass:"button-showpassword",on:{"click":function($event){_vm.showPasswordflag = !_vm.showPasswordflag}}},[_vm._v("")])]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('input',{staticClass:"form-submit-button",attrs:{"type":"submit","name":"","value":"SING IN NOW"},on:{"click":_vm.validateLogin}})])])])],1)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',{staticClass:"auth_h1"},[_vm._v("Welcome "),_c('span',{staticClass:"auth-h1--redline"},[_vm._v("to LAVA")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -28949,8 +29264,9 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-068b0b46", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],13:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":7}],15:[function(require,module,exports){
 ;(function(){
+//
 //
 //
 //
@@ -28981,15 +29297,15 @@ module.exports = {
 		}
 
 	}
-
+	
 }
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"wrapper"}},[_c('header-view'),_vm._v(" "),_c('div',{attrs:{"id":"main"}},[_vm._m(0),_vm._v(" "),_c('div',{attrs:{"id":"form-variants"}},[_c('router-link',{staticClass:"fv-link-left ",attrs:{"to":"/singin"}},[_vm._v("SING IN")]),_vm._v(" "),_c('router-link',{staticClass:"fv-link-rigth",attrs:{"to":"/singup"}},[_vm._v("SING UP")]),_vm._v(" "),_c('singup-form')],1)])],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',[_vm._v("Welcome "),_c('span',{staticClass:"redline"},[_vm._v("to LAVA")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"auth_wrapper"},[_c('header-view'),_vm._v(" "),_c('div',{staticClass:"auth_main"},[_c('div',{staticClass:"auth_forms"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"auth-links--wrapper"},[_c('router-link',{staticClass:"auth-links",attrs:{"to":"/singin"}},[_vm._v("Sing in")]),_vm._v(" "),_c('router-link',{staticClass:"auth-links auth-links--right",attrs:{"to":"/singup"}},[_vm._v("Sing up")])],1),_vm._v(" "),_c('singup-form')],1)])],1)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('h1',{staticClass:"auth_h1"},[_vm._v("Welcome "),_c('span',{staticClass:"auth-h1--redline"},[_vm._v("to LAVA")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -29000,8 +29316,10 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-3ff484b2", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}],14:[function(require,module,exports){
+},{"vue":11,"vue-hot-reload-api":7}],16:[function(require,module,exports){
 ;(function(){
+//
+//
 //
 //
 //
@@ -29103,8 +29421,8 @@ module.exports = {
             validBirthdate: false,
             selectSex: 0,
             activeMan: false,
-            activeWoman: false
-            
+            activeWoman: false,
+            emailValidationPreloader: false     
             
             
         }
@@ -29113,66 +29431,98 @@ module.exports = {
     
     computed: {
             showPassword: function () {
-                return this.showPasswordflag ? 'password' : 'text';
+
+                // показывает или скрывает пароль
+
+                return this.showPasswordflag ? 'password' : 'text'
+
                 },
-            selectSexSetter: function( ){
-                
-                    
+
+            selectSexSetter: function( ){      
+
+                    // Определяет какой пол выбран
+
                     if(this.selectSex === 1){
-                        this.$store.user.sex = 1
+                        
+                        this.$store.user.sex = 1                            
                         this.activeWoman = false
                         this.activeMan = true
+
                     }else if(this.selectSex === 2){
+
                         this.$store.user.sex = 2
                         this.activeWoman = true
                         this.activeMan = false
+
                     }else{
+
                         this.$store.user.sex = 0
                         this.activeWoman = false
                         this.activeMan = false
                     }
                 
-            }
-            
-           
-            
+            }                 
           
         },
     methods: {
 
             selectWoman: function(){
-                
-                if(this.selectSex != 2){
-                    
-                    this.selectSex = 2
-                
-                }else{
-                    
+
+                // выбирает пол, если этот пол уже выбран, то сбрасывает пол на 0
+
+                if(this.selectSex != 2){ 
+
+                    this.selectSex = 2  
+
+                }else{                 
+
                     this.selectSex = 0
+
                 }
+
                 this.selectSexSetter
             },
-             selectMan: function(){
-               
-                if(this.selectSex != 1){
-                     
-                    this.selectSex = 1
-                
-                }else{
-                    
+            selectMan: function(){
+
+                // выбирает пол, если этот пол уже выбран, то сбрасывает пол на 0
+
+                if(this.selectSex != 1){  
+
+                    this.selectSex = 1   
+
+                }else{                 
+
                     this.selectSex = 0
+
                 }
+
                 this.selectSexSetter
             },
 
             registerNewUser: function(){
+
+                // Регистрация нового пользователя
                 
                 this.$http.post(this.$store.api.userRegistration , this.$store.user, {emulateJSON: true}).then( function(response)  {
-                    // войти пользователем и получить токен
-                    this.$http.post(this.$store.api.userlogin , {email: this.$store.user.email, password: this.$store.user.password},{emulateJSON: true} ).then( function(response)  {
 
+                    // войти пользователем и получить токен
+
+                    this.$http.post(this.$store.api.userlogin , {email: this.$store.user.email, password: this.$store.user.password, device: 'desktop'},{emulateJSON: true} ).then( function(response)  {
+
+                        
+
+                        // Записывает token в $store
                         this.$store.api.token = response.data.result
 
+                        // Создаём Cookie
+                        this.$cookie.set('lava-token', this.$store.api.token, 1);
+                        
+                        // Убирает пароль
+                        this.$store.user.password = 'none'
+
+                        // Возврат формата даты под клиент
+                        this.$store.user.birthdate = this.$store.user.birthdate.split('-').reverse().join('.');
+                        // редирект на главную
                         this.$router.replace('/')
 
                     })
@@ -29181,84 +29531,127 @@ module.exports = {
                    
                     })
             },
-
+           
            validateFirstStep: function(e){
+                // отмена отправки формы
                 e.preventDefault()       
+
+                // Валидация первого этапа регистрации
+                // !!! Включается прелоадер
+                this.emailValidationPreloader = true
+                // Валидация email на сервере
                 
- 
+
                 this.$validator.validate('email').then((result) => {
                         
                         this.$http.post(this.$store.api.userRegistration , { email: this.$store.user.email},{emulateJSON: true}).then( function(response)  {
 
+                                // Обработка валидации email на сервере
+                                //выключается прелоадер
+                                this.emailValidationPreloader = false
+                                
 
                                 if(response.data.message === "email_incorrect"){
+
+                                    // Генерирует ошибку если email не корректен (как я понял по списку доменов)
+
+
+
                                     this.errors.add({field:"email", msg: "Email incorrect"})
+
+                                  
+
                                 }else if(response.data.message === "email_exists"){
+
+                                    // Генерирует ошибку если email занят
+
+                                    
+
                                     this.errors.add({field:"email", msg: "Email already used"})
+                                    
+
                                 }else{
+
+                                    // Валидация от сервера прошла успешно
+                                    // 
+                                    // !!! Прелоадер succes
                                     this.validEmail = true
+                                    
                                     if(this.validEmail && this.validPassword){
-                                    this.step += 1
+                                    if(this.step === 1) {
+                                        this.step += 1
                                     }
+                                    
+
+                                    }
+
+                                    
                                 }
-                                
-                                           
-                            
-                            
-                            
                             
                         },function(error){
                             
                               // ошибка от сервера
-                        })
+                        })  
+                })
 
-
-                      
-                 })
+                // Валидация поля пароль на клиенте
+                
                 this.$validator.validate('password').then((result) => {
+
+                        
                         this.validPassword = result
-                            if(this.validEmail && this.validPassword){
+                        
+                        if(this.validEmail && this.validPassword){
+                         
+                        if(this.step === 1) {
                             this.step += 1
-                }
+                        }
+
+                        }
                   
                 }) 
             },
+            
             validateSecondStep: function(e){
                 e.preventDefault()
+                // Валидация второго этапа регистрации
 
                 this.$validator.validate('name').then((result) => {
                             this.validName = result
-                            if(this.validLastname && this.validName && this.validBirthdate){
-                            this.step += 1
-                }
+                           
+                
                 })
+
                 this.$validator.validate('lastname').then((result) => {
                             this.validLastname = result
-                            if(this.validLastname && this.validName && this.validBirthdate){
-                            this.step += 1
-                }
+                            
+                
                 })
                 this.$validator.validate('birthdate').then((result) => {
                            
                             this.validBirthdate = result       
                             
-                            if(this.validLastname && this.validName && this.validBirthdate){
-                            this.step += 1
+                           
 
 
 
-                }
+                
                 
                 })
 
+                // Валидация второго этапа регистрации (всей формы перед отправкой)
 
                 this.$validator.validateAll().then((result) => {
                         
-                       
-                        this.$store.user.birthdate = this.$store.user.birthdate.split('.').join('-');
+                        if(this.validLastname && this.validName && this.validBirthdate){
+                            this.step += 1
+                        // Установка даты под формат сервера Y-M-D
+                        this.$store.user.birthdate = this.$store.user.birthdate.split('.').reverse().join('-');
                         
                         this.registerNewUser()
-                       
+
+
+                        }
                         
                     })
 
@@ -29276,7 +29669,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form "},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 1),expression:"step === 1"}],attrs:{"method":"post"}},[_c('div',{class:[{ 'is_error': _vm.errors.has('email')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("email\n\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.email),expression:"$store.user.email"},{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"}],staticClass:"form-input",attrs:{"type":"text","name":"email","placeholder":"your@email.com","maxlength":"80"},domProps:{"value":(_vm.$store.user.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "email", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('password')}, 'custom-input', 'ci-password' ]},[_c('label',{staticClass:"form-label"},[_vm._v(" password\n                        "),((_vm.showPassword)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"checkbox"},domProps:{"checked":Array.isArray(_vm.$store.user.password)?_vm._i(_vm.$store.user.password,null)>-1:(_vm.$store.user.password)},on:{"change":function($event){var $$a=_vm.$store.user.password,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.$store.user, "password", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.$store.user, "password", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.$store.user, "password", $$c)}}}}):((_vm.showPassword)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":"radio"},domProps:{"checked":_vm._q(_vm.$store.user.password,null)},on:{"change":function($event){_vm.$set(_vm.$store.user, "password", null)}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","type":_vm.showPassword},domProps:{"value":(_vm.$store.user.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "password", $event.target.value)}}})]),_vm._v(" "),_c('span',{staticClass:"button-check_password",on:{"click":function($event){_vm.showPasswordflag = !_vm.showPasswordflag}}},[_vm._v("")])]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('router-link',{staticClass:"back_to_singin",attrs:{"to":"/singin"}},[_vm._v("Already have an account?")]),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"SING UP NOW"},on:{"click":_vm.validateFirstStep}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 2),expression:"step === 2"}]},[_c('div',{class:[{ 'is_error': _vm.errors.has('name')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.first_name),expression:"$store.user.first_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"type":"text","name":"name","maxlength":"30"},domProps:{"value":(_vm.$store.user.first_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "first_name", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('name'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('name')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'is_error': _vm.errors.has('lastname')}, 'custom-input' ]},[_c('label',{staticClass:"form-label"},[_vm._v("last name\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.last_name),expression:"$store.user.last_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"name":"lastname","type":"text","maxlength":"30"},domProps:{"value":(_vm.$store.user.last_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "last_name", $event.target.value)}}})])]),_vm._v(" "),(_vm.errors.has('lastname'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('lastname')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"flex-wrapper"},[_c('div',{class:[{ 'is_error': _vm.errors.has('birthdate')}, 'custom-input', 'm__birthdate' ]},[_c('label',{staticClass:"form-label"},[_vm._v("birthdate\n                        "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.birthdate),expression:"$store.user.birthdate"},{name:"validate",rawName:"v-validate",value:('date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'),expression:"'date_format:D.M.YYYY|date_between:1.1.1938,1.1.2006|required'"}],staticClass:"form-input ",attrs:{"type":"text","name":"birthdate","placeholder":"1.1.2018"},domProps:{"value":(_vm.$store.user.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "birthdate", $event.target.value)}}})])]),_vm._v(" "),_c('div',{staticClass:"sex-wrapper"},[_c('div',{class:[{ 'selectSex': _vm.activeMan }, 'sex-checkbox' ],on:{"click":_vm.selectMan}},[_vm._v("")]),_vm._v(" "),_c('div',{class:[{ 'selectSex': _vm.activeWoman }, 'sex-checkbox' ],on:{"click":_vm.selectWoman}},[_vm._v("")])])]),_vm._v(" "),(_vm.errors.has('birthdate'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('birthdate')))]):_vm._e(),_vm._v(" "),_c('input',{staticClass:"form-submit",attrs:{"type":"submit","name":"","value":"NEXT"},on:{"click":_vm.validateSecondStep}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 3),expression:"step === 3"}]})])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form",attrs:{"method":"post"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 1),expression:"step === 1"}],staticClass:"form-step-wrapper"},[_c('div',{class:[{ 'input-iserror': _vm.errors.has('email')}, {'input-preload' : _vm.emailValidationPreloader}, { 'input-issucces': _vm.validEmail }, 'custom-input' ]},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_email"}},[_vm._v("email")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.email),expression:"$store.user.email"},{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"}],staticClass:"form-input",attrs:{"type":"text","name":"email","placeholder":"your@email.com","maxlength":"80","id":"registration_email"},domProps:{"value":(_vm.$store.user.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "email", $event.target.value)}}})]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'input-iserror': _vm.errors.has('password')}, { 'input-issucces': _vm.validPassword }, 'custom-input', 'm--custom-input--password' ]},[_c('div',{staticClass:"input-password--wrapper"},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_password"}},[_vm._v(" password")]),_vm._v(" "),((_vm.showPassword)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":"checkbox"},domProps:{"checked":Array.isArray(_vm.$store.user.password)?_vm._i(_vm.$store.user.password,null)>-1:(_vm.$store.user.password)},on:{"change":function($event){var $$a=_vm.$store.user.password,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.$set(_vm.$store.user, "password", $$a.concat([$$v])))}else{$$i>-1&&(_vm.$set(_vm.$store.user, "password", $$a.slice(0,$$i).concat($$a.slice($$i+1))))}}else{_vm.$set(_vm.$store.user, "password", $$c)}}}}):((_vm.showPassword)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":"radio"},domProps:{"checked":_vm._q(_vm.$store.user.password,null)},on:{"change":function($event){_vm.$set(_vm.$store.user, "password", null)}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.password),expression:"$store.user.password"},{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"}],staticClass:"form-input",attrs:{"name":"password","maxlength":"255","id":"registration_password","type":_vm.showPassword},domProps:{"value":(_vm.$store.user.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "password", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"button-showpassword",on:{"click":function($event){_vm.showPasswordflag = !_vm.showPasswordflag}}},[_vm._v("")])]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('router-link',{staticClass:"form-links",attrs:{"to":"/singin"}},[_vm._v("Already have an account?")]),_vm._v(" "),_c('input',{staticClass:"form-submit-button",attrs:{"type":"submit","name":"","value":"SING UP NOW"},on:{"click":_vm.validateFirstStep}})],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 2),expression:"step === 2"}]},[_c('div',{class:[{ 'input-iserror': _vm.errors.has('name')}, 'custom-input' ]},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_name"}},[_vm._v("name")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.first_name),expression:"$store.user.first_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"type":"text","name":"name","maxlength":"30","id":"registration_name"},domProps:{"value":(_vm.$store.user.first_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "first_name", $event.target.value)}}})]),_vm._v(" "),(_vm.errors.has('name'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('name')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'input-iserror': _vm.errors.has('lastname')}, 'custom-input' ]},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_lastname"}},[_vm._v("last name")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.last_name),expression:"$store.user.last_name"},{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"}],staticClass:"form-input",attrs:{"name":"lastname","type":"text","maxlength":"30","id":"registration_lastname"},domProps:{"value":(_vm.$store.user.last_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "last_name", $event.target.value)}}})]),_vm._v(" "),(_vm.errors.has('lastname'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('lastname')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"m--birthdate-and-sex--wrapper"},[_c('div',{class:[{ 'input-iserror': _vm.errors.has('birthdate')}, 'custom-input', 'm--custom-input--birthdate' ]},[_c('label',{staticClass:"form-label",attrs:{"for":"registration_birthdate"}},[_vm._v("birthdate")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.user.birthdate),expression:"$store.user.birthdate"},{name:"validate",rawName:"v-validate",value:('date_format:DD.MM.YYYY|date_between:01.01.1938,01.01.2006|required'),expression:"'date_format:DD.MM.YYYY|date_between:01.01.1938,01.01.2006|required'"}],staticClass:"form-input ",attrs:{"type":"text","name":"birthdate","placeholder":"1.1.2018","id":"registration_birthdate"},domProps:{"value":(_vm.$store.user.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.user, "birthdate", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"m--sex--wrapper"},[_c('div',{class:[{ 'input-sex-selected': _vm.activeMan }, 'input-sex' ],on:{"click":_vm.selectMan}},[_vm._v("")]),_vm._v(" "),_c('div',{class:[{ 'input-sex-selected': _vm.activeWoman }, 'input-sex' ],on:{"click":_vm.selectWoman}},[_vm._v("")])])]),_vm._v(" "),(_vm.errors.has('birthdate'))?_c('span',{staticClass:"validate-error"},[_vm._v(_vm._s(_vm.errors.first('birthdate')))]):_vm._e(),_vm._v(" "),_c('input',{staticClass:"form-submit-button",attrs:{"type":"submit","name":"","value":"NEXT"},on:{"click":_vm.validateSecondStep}})]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.step === 3),expression:"step === 3"}]},[_c('div',{staticClass:"zaglushka"},[_vm._v("We are build you account")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -29288,4 +29681,4 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-199fa5c5", __vue__options__)
   }
 })()}
-},{"vue":9,"vue-hot-reload-api":5}]},{},[1]);
+},{"vue":11,"vue-hot-reload-api":7}]},{},[1]);

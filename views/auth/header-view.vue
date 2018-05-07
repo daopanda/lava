@@ -1,10 +1,9 @@
 <template>
-	<header id="top-panel">		
-		<a href="#" id="logotype">
+	<header class="header">		
+		<a href="#" class="logotype_link">
 		<img src="imgs/logo.svg" >
 		LAVA
-		</a>
-	
+		</a>	
 	</header>
 </template>
 

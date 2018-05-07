@@ -1,5 +1,6 @@
 <template>
 <div id="lava-wrapper">
+	wait response from server
 	<div>{{ name }} </div>
 	<div>{{ lastname }}</div>
 	<div>{{ $store.api.token }}</div>
@@ -14,25 +15,51 @@
 		data: function() {
 			return {
 				name: '',
-				lastname: ''
+				lastname: '',
+				userinfo: ''
 			}
 		
 		},
 		methods: {
 			logout: function(){
-				// удалить cookie
-				this.$store.api.token = ''
-				this.$router.replace('/singin')
+				
+				
+
+				this.$http.get(this.$store.api.userlogout,{headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {
+					
+						this.$store.api.token = ''
+						this.$cookie.delete('lava-token')
+						this.$router.replace('/singin')
+
+					})
+			
+			},
+			getUserInfo: function(){
+				this.$store.api.token = this.$cookie.get('lava-token')
+				
+				this.$http.get(this.$store.api.userobject,{headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {
+
+					this.userinfo = response.data.result
+					this.name = this.userinfo.first_name
+					this.lastname = this.userinfo.last_name
+					
+					
+
+				})
 			}
 
 		},
 		created: function(){
-			if(this.$store.api.token.length === 0){
-				console.log('not loging')
+			if(this.$cookie.get('lava-token')){
+				
+				
+				
+				this.getUserInfo()
+
+				
+			}else{				
+				
 				this.$router.replace('/singin')
-			}else{
-				this.name = this.$store.user.first_name
-				this.lastname = this.$store.user.last_name
 			}
 
 		}
