@@ -1,7 +1,4 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-
-
-
 var Vue = require('vue/dist/vue.js')
 
 var VueResource = require("vue-resource")
@@ -30,35 +27,34 @@ Vue.use(VueCookie)
 
 // Routing
 var router = new VueRouter({
-  history: true,
-  hashbang: false,
-	routes: [
-	{ 'path': '/singin', component: singin},
-	{ 'path': '/singup', component: singup},
-	{ 'path': '/', component: lava },	
-	]
+  mode: 'history',
+  routes: [
+  { 'path': '/singin', component: singin},
+  { 'path': '/singup', component: singup},
+  { 'path': '/', component: lava }
+  ]
 })
 
 // store
 var store = {
   user: {
-  	
-  	email: '',
-  	password:'',
-  	first_name: '',
-  	last_name: '',
-  	sex: 0,
-  	birthdate: '',
-  	language: 'en'
+    
+    email: '',
+    password:'',
+    first_name: '',
+    last_name: '',
+    sex: 0,
+    birthdate: '',
+    language: 'en'
 
   },
   api: {
-  	
-  	token: false,
-  	userRegistration: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.register',
-  	userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login',
-  	userlogout: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.logout',
-  	userobject: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.getInfo'
+    
+    token: false,
+    userRegistration: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.register',
+    userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login',
+    userlogout: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.logout',
+    userobject: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.getInfo'
   }
 }
 
@@ -88,19 +84,19 @@ Vue.component('singin', singin)
 Vue.component('singup-form', singup_form )
 
 new Vue({
-	el: '#app',
-	router: router,
+  el: '#app',
+  router: router,
 
-	data:{
-		
-		
-	},
-	created:function(){
-		// прочитать cookie
-		
-	}
+  data:{
+    
+    
+  },
+  created:function(){
+    // прочитать cookie
+    
+  }
 
-	
+  
 
 })
 },{"./views/app/lava-index.vue":12,"./views/auth/header-view.vue":13,"./views/auth/singin-view.vue":14,"./views/auth/singup-view.vue":15,"./views/elements/singup-form-component.vue":16,"vee-validate":5,"vue-cookie":6,"vue-resource":8,"vue-router":9,"vue/dist/vue.js":10}],2:[function(require,module,exports){
