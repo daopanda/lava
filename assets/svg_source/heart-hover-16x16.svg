@@ -1,0 +1,11 @@
+<svg width="16" height="14" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<path id="Union" d="M 1.12234 1.17088C 2.61868 -0.390293 5.04471 -0.390293 6.54105 1.17088L 8.00003 2.69304L 9.45901 1.17088C 10.9554 -0.390293 13.3814 -0.390293 14.8777 1.17088C 16.3742 2.73205 16.3742 5.26323 14.8777 6.8244L 8.00003 14L 1.12234 6.8244C -0.374115 5.26323 -0.374115 2.73205 1.12234 1.17088Z" fill="url(#paint0_linear)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.000814958 -4.1781) scale(15.9984 22.3521)">
+<stop stop-color="#F2669A"/>
+<stop offset="1" stop-color="#FA5D5A"/>
+</linearGradient>
+</defs>
+</svg>

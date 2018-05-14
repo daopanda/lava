@@ -1,0 +1,10 @@
+<svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1" fill="white">
+<path d="M12.4444 0H1.55556C0.696446 0 0 0.732625 0 1.63636V7.36364C0 8.26737 0.696446 9 1.55556 9H12.4444C13.3036 9 14 8.26737 14 7.36364V1.63636C14 0.732625 13.3036 0 12.4444 0Z"/>
+</mask>
+<path d="M12.4444 0H1.55556C0.696446 0 0 0.732625 0 1.63636V7.36364C0 8.26737 0.696446 9 1.55556 9H12.4444C13.3036 9 14 8.26737 14 7.36364V1.63636C14 0.732625 13.3036 0 12.4444 0Z" transform="translate(0 7)" stroke="#F8728A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" mask="url(#path-1-inside-1)"/>
+<mask id="path-2-inside-2" fill="white">
+<path d="M0 7V3.88889C0 2.85749 0.421427 1.86834 1.17157 1.13903C1.92172 0.409721 2.93913 0 4 0C5.06087 0 6.07828 0.409721 6.82843 1.13903C7.57857 1.86834 8 2.85749 8 3.88889V7"/>
+</mask>
+<path d="M0 7V3.88889C0 2.85749 0.421427 1.86834 1.17157 1.13903C1.92172 0.409721 2.93913 0 4 0C5.06087 0 6.07828 0.409721 6.82843 1.13903C7.57857 1.86834 8 2.85749 8 3.88889V7" transform="translate(3)" stroke="#F8728A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" mask="url(#path-2-inside-2)"/>
+</svg>

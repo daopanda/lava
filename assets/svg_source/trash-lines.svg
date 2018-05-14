@@ -1,0 +1,10 @@
+<svg width="11" height="12" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<g id="trash-2">
+<path id="Vector" d="M 0 0L 1 0L 9 0" transform="translate(1 2.99805)" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M 1.5 2L 1.5 1C 1.5 0.734784 1.60536 0.48043 1.79289 0.292893C 1.98043 0.105357 2.23478 0 2.5 0L 4.5 0C 4.76522 0 5.01957 0.105357 5.20711 0.292893C 5.39464 0.48043 5.5 0.734784 5.5 1L 5.5 2M 7 2L 7 9C 7 9.26522 6.89464 9.51957 6.70711 9.70711C 6.51957 9.89464 6.26522 10 6 10L 1 10C 0.734784 10 0.48043 9.89464 0.292893 9.70711C 0.105357 9.51957 0 9.26522 0 9L 0 2L 7 2Z" transform="translate(2 1)" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M 0 0L 0 3" transform="translate(4.5 5.49805)" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M 0 0L 0 3" transform="translate(6.5 5.49805)" stroke="#FAFAFA" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

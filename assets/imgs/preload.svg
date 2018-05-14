@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 30 30" width="30" height="30">
+	<style type="text/css"><![CDATA[ 
+		
+		.fast{
+		 transform-origin: 50% 50%;
+			animation:rotate linear 1s infinite running;
+		}
+		
+
+		@keyframes rotate{
+
+			
+			100%{
+			
+				transform:rotate(360deg);
+			}
+
+		}
+
+
+	]]></style>
+
+	<defs>
+	<clipPath id="_clipPath_k0zyT2q1z64jB9lmQ6GVkiZRlcbjnqcJ">
+		<rect width="30" height="30"/>
+	</clipPath>
+	</defs>
+		<g clip-path="url(#_clipPath_k0zyT2q1z64jB9lmQ6GVkiZRlcbjnqcJ)">
+		<path class="fast" d=" M 27.5 15 C 27.5 11.69 26.18 8.5 23.84 6.16 C 21.5 3.82 18.31 2.5 15 2.5 C 11.69 2.5 8.5 3.82 6.16 6.16 C 3.82 8.5 2.5 11.69 2.5 15 L 2.5 15 C 2.5 18.31 3.82 21.5 6.16 23.84 C 8.5 26.18 11.69 27.5 15 27.5 C 15.335 27.5 15.668 27.486 16 27.46 L 16 22.433 C 15.67 22.477 15.336 22.5 15 22.5 C 13.01 22.5 11.1 21.71 9.7 20.3 C 8.29 18.9 7.5 16.99 7.5 15 L 7.5 15 C 7.5 13.01 8.29 11.1 9.7 9.7 C 11.1 8.29 13.01 7.5 15 7.5 C 16.99 7.5 18.9 8.29 20.3 9.7 C 21.71 11.1 22.5 13.01 22.5 15 L 27.5 15 Z " fill-rule="evenodd" fill="rgba(236,236,236,0.5)"/>
+	</g>
+</svg>

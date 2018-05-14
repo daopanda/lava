@@ -1,0 +1,11 @@
+<svg width="16" height="14" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M 6.08398 12L 3 12C 1.34277 12 0 10.6572 0 9L 0 3C 0 1.34277 1.34277 0 3 0L 3.79004 0C 3.81836 0 3.8457 0 3.87402 0L 12.127 0C 12.1553 0 12.1826 0 12.2109 0L 13 0C 14.6572 0 16 1.34277 16 3L 16 3.91895C 16 3.97168 16 4.02246 16 4.0752L 16 9C 16 10.6572 14.6572 12 13 12L 9.91699 12L 8 14L 6.08398 12Z" fill="url(#paint0_linear)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0.000814955 -4.1781) scale(15.9984 22.3521)">
+<stop stop-color="#F2669A"/>
+<stop offset="1" stop-color="#FA5D5A"/>
+</linearGradient>
+</defs>
+</svg>

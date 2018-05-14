@@ -1,0 +1,393 @@
+/* ICONS */
+
+.icn-search--bg{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAuNjY2NyA1LjMzMzIyQzEwLjY2NjcgOC4yNzg2NyA4LjI3ODkgMTAuNjY2NCA1LjMzMzM2IDEwLjY2NjRDMi4zODc4MyAxMC42NjY0IDAgOC4yNzg2NyAwIDUuMzMzMjJDMCAyLjM4Nzc2IDIuMzg3ODMgMCA1LjMzMzM2IDBDOC4yNzg5IDAgMTAuNjY2NyAyLjM4Nzc2IDEwLjY2NjcgNS4zMzMyMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEgMSkiIHN0cm9rZT0iIzg3ODc4NyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTIuOTAwMDIgMi44OTk5NEwtMi41NDMxNWUtMDcgLTIuNTQzMDhlLTA3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMC4xMDA2IDEwLjA5OTYpIiBzdHJva2U9IiM4Nzg3ODciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+
+}
+.icn-news--bg{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMjciIHZpZXdCb3g9IjAgMCAzNyAyNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTcuMjIyMiAxOEgyLjIyMjIyQzAuOTk0OTIzIDE4IDAgMTYuOTkyNiAwIDE1Ljc1VjBIMTVWOU0xNy4yMjIyIDE4QzE1Ljk5NDkgMTggMTUgMTYuOTkyNiAxNSAxNS43NVY5TTE3LjIyMjIgMThIMTcuNzc3OEMxOS4wMDUxIDE4IDIwIDE2Ljk5MjYgMjAgMTUuNzVWOUgxNU00IDEzSDExLjExMTFNNCA0SDExVjlINFY0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA3LjU1MzcxKSIgc3Ryb2tlPSIjNzk3Mjk2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+
+}
+.icn-message--bg{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMjciIHZpZXdCb3g9IjAgMCAzNyAyNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAzTDkgOUwxOCAzTTAgMEgxOFYxNUgwVjBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCA4LjU1MzcxKSIgc3Ryb2tlPSIjNzk3Mjk2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==);
+}
+.icn-add--bg{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzNyAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjYgMTNDMjYgMjAuMTc5NyAyMC4xNzk3IDI2IDEzIDI2QzUuODIwMyAyNiAwIDIwLjE3OTcgMCAxM0MwIDUuODIwMyA1LjgyMDMgMCAxMyAwQzIwLjE3OTcgMCAyNiA1LjgyMDMgMjYgMTNaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2IDMpIiBzdHJva2U9IiM3OTcyOTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PGxpbmUgeDE9IjEiIHkxPSItMSIgeDI9IjkiIHkyPSItMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTggMTEpIHJvdGF0ZSg5MCkiIHN0cm9rZT0iIzc5NzI5NiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48bGluZSB4MT0iMSIgeTE9Ii0xIiB4Mj0iOSIgeTI9Ii0xIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNCAxNSkgcm90YXRlKDE4MCkiIHN0cm9rZT0iIzc5NzI5NiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=);
+	background-position: 50% 50% !important;
+}
+.icn-bell--bg{
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyNSAyMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAuNTU3IDE3LjEwM0MxMC4zOTg4IDE3LjM3NTggMTAuMTcxNyAxNy42MDIzIDkuODk4NCAxNy43NTk3QzkuNjI1MTUgMTcuOTE3MSA5LjMxNTM0IDE4IDkgMThDOC42ODQ2NiAxOCA4LjM3NDg1IDE3LjkxNzEgOC4xMDE2IDE3Ljc1OTdDNy44MjgzNCAxNy42MDIzIDcuNjAxMjMgMTcuMzc1OCA3LjQ0MyAxNy4xMDNNMTggMTMuNTAyNEgwQzAuNzE2MDg1IDEzLjUwMjQgMS40MDI4NCAxMy4yMTc5IDEuOTA5MTkgMTIuNzExNEMyLjQxNTU0IDEyLjIwNSAyLjcgMTEuNTE4MSAyLjcgMTAuODAxOVY2LjMwMTEyQzIuNyA0LjYyOTk2IDMuMzYzNzUgMy4wMjcyNCA0LjU0NTIzIDEuODQ1NTVDNS43MjY3MSAwLjY2Mzg2NiA3LjMyOTE0IDAgOSAwQzEwLjY3MDkgMCAxMi4yNzMzIDAuNjYzODY2IDEzLjQ1NDggMS44NDU1NUMxNC42MzYzIDMuMDI3MjQgMTUuMyA0LjYyOTk2IDE1LjMgNi4zMDExMlYxMC44MDE5QzE1LjMgMTEuNTE4MSAxNS41ODQ1IDEyLjIwNSAxNi4wOTA4IDEyLjcxMTRDMTYuNTk3MiAxMy4yMTc5IDE3LjI4MzkgMTMuNTAyNCAxOCAxMy41MDI0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40NzM2MyAxLjU1MzcxKSIgc3Ryb2tlPSIjNzk3Mjk2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxlbGxpcHNlIGN4PSIxLjgzODcxIiBjeT0iMS44MjE0MyIgcng9IjEuODM4NzEiIHJ5PSIxLjgyMTQzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMC45OTYxIDAuNTUzNzExKSIgZmlsbD0iI0Y4NjE3MyIvPjwvc3ZnPg==);
+	background-position: 50% 53% !important;
+}
+/* Main wrapper APP */
+#app{
+
+}
+
+	.lv-logotype{
+		display: block;
+		width: 2em;
+		overflow: hidden;									
+		border-right: none ;				
+	}
+	.lv-logotype--link{
+		text-decoration: none;
+		overflow: hidden;
+		text-indent: -100px;		
+		
+	}
+	.lv-logo{
+		height: 1.4em;	
+		width: 1.5em;	
+		
+		
+	}
+
+
+
+
+
+	.lv-header{			
+		width: 98%;
+		padding: 0 0 0 2%;	
+		height: 2.5em;
+		line-height: 2.5em		
+	}
+
+	
+
+	.lv-nav{
+		display: flex;
+		width: 100%;
+		height: 2.5em;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		background: #FFF;
+		}
+
+	.lv-search{
+		width: 100%;
+		border-right: none;
+		padding: 0 0.5em;
+		}
+
+	.lv-search--input{
+		
+		background-position: 3% 50%;
+		padding: 0.2em 0 0.2em 12%;
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+/* ADAPTIVE MOBILE after 812px (IphoneX)*/
+
+@media screen and (min-width: 451px) and (max-width: 812px){  
+
+
+
+	.lv-header{			
+		width: 99%;
+		padding: 0 0 0 1%;			
+	}
+
+	.lv-logotype{
+		display: block;
+		min-width: 9em;
+		width: 15%;							
+		border-right: solid 1px #E6E6E6;				
+	}
+
+	.lv-nav{
+		display: flex;
+		width: 100%;
+		height: 3em;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background: #FFF;
+		}
+
+	.lv-search{
+		width: 84%;
+		border-right: none;
+		padding: 0 2%;
+
+		}
+
+
+}
+
+@media screen and (min-width: 813px) and (max-width: 1025px){  
+
+	.lv-header{			
+		width: 99%;
+		padding: 0 0 0 1%;			
+	}
+
+	.lv-logotype{
+		display: block;
+		min-width: 9em;
+		width: 15%;							
+		border-right: solid 1px #E6E6E6;				
+	}
+	.lv-nav--link{
+		min-width: 3em;
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1279px) and (max-width: 1400px){  
+
+	/* #######################################################################################################
+		######################################################################################################
+		######################################################################################################
+		INSIDE */
+
+		.lv-wrapper{
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			background: #FAFAFA;
+			flex-wrap: nowrap;
+			min-height: 100vh;
+		}
+		.lv-header{
+			
+
+			
+			
+			width: 86%;
+			padding: 0 7%;
+			height: 3.8em;
+			line-height: 3.8em;
+		}
+			/* LOGOTYPE */
+			.lv-logotype{
+				
+				width: 20%;							
+				border-right: solid 1px #E6E6E6;
+				
+			}
+			.lv-logotype--link{
+				
+				font-size: 1.2em;
+				color: #3B3848;
+				font-family: 'icomoon';
+				
+				
+
+
+			}
+			.lv-logo{
+				height: 1.4em;					
+				margin-right: 0.5em;
+				position: relative;
+				top: 0.25em;
+			}
+			/* SEARCH */
+			.lv-search{
+				width: 38%;
+				border-right: solid 1px #E6E6E6;
+				padding: 0 2%;
+
+			}
+			.lv-search--input{
+				background-size: 16px;
+				background-position: 5% 50%;
+				background-color: #f7f7f7;
+				background-repeat: no-repeat;
+				display:inline-block;
+				padding: 0.5em 0 0.5em 12%;
+				width: 88%;
+				position: relative;
+				font-size: 1em;
+						
+				border: none;
+				border-radius: 4px;
+			}
+			.lv-search--input::placeholder {
+				color: #878787;
+				
+			}
+			/* NAVIGATION */
+			.lv-nav{
+				display: flex;
+				width: 40%;
+
+			}
+			.lv-nav--link{
+				width: 20%;
+				border-right: solid 1px #E6E6E6;
+				text-align: center;
+				overflow: hidden;
+				text-indent: -1000px;
+				background-repeat: no-repeat;
+				background-position: 50% 40%;
+
+
+			}
+			.lv-nav--link:hover{
+				background-color:#f3f3f3;
+				transition: background-color 0.2s linear;
+			}
+			.lv-nav--link__profile{				
+				background-position: center !important;
+				background: no-repeat url('../imgs/user.svg'),linear-gradient(90deg, #f2669a 0.01%, #fa5d5a 99.99%);
+				background-color: #f2669a;				
+			}
+			.lv-nav--link__profile:hover{			
+				background: no-repeat url('../imgs/user-pink.svg');
+				transition: background 0.2s linear;
+				
+			}
+
+			
+}
+
+
+
+
+
+
+@media screen and (min-width: 4000px){
+
+	/* #######################################################################################################
+		######################################################################################################
+		######################################################################################################
+		INSIDE */
+
+		.lv-wrapper{
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			background: #FAFAFA;
+			flex-wrap: nowrap;
+			min-height: 100vh;
+		}
+		.lv-header{
+			background: #FFF;
+			display: flex;
+			flex-direction: row;
+			width: 86%;
+			padding: 0 7%;
+			height: 3.8em;
+			line-height: 3.8em;
+		}
+			/* LOGOTYPE */
+			.lv-logotype{
+				display: block;
+				width: 20%;
+							
+				border-right: solid 1px #E6E6E6;
+				
+			}
+			.lv-logotype--link{
+				text-decoration: none;
+				font-size: 1.2em;
+				color: #3B3848;
+				font-family: 'icomoon';				
+				
+
+
+			}
+			.lv-logo{
+				height: 1.4em;					
+				margin-right: 0.5em;
+				position: relative;
+				top: 0.25em;
+			}
+			/* SEARCH */
+			.lv-search{
+				width: 38%;
+				border-right: solid 1px #E6E6E6;
+				padding: 0 2%;
+
+			}
+			.lv-search--input{
+				background-size: 16px;
+				background-position: 5% 50%;
+				background-color: #f7f7f7;
+				background-repeat: no-repeat;
+				display:inline-block;
+				padding: 0.5em 0 0.5em 12%;
+				width: 88%;
+				position: relative;
+				font-size: 1em;
+						
+				border: none;
+				border-radius: 4px;
+			}
+			.lv-search--input::placeholder {
+				color: #878787;
+				
+			}
+			/* NAVIGATION */
+			.lv-nav{
+				display: flex;
+				width: 40%;
+
+			}
+			.lv-nav--link{
+				width: 20%;
+				border-right: solid 1px #E6E6E6;
+				text-align: center;
+				overflow: hidden;
+				text-indent: -1000px;
+				background-repeat: no-repeat;
+				background-position: 50% 40%;
+
+
+			}
+			.lv-nav--link:hover{
+				background-color:#f3f3f3;
+				transition: background-color 0.2s linear;
+			}
+			.lv-nav--link__profile{				
+				background-position: center !important;
+				background: no-repeat url('../imgs/user.svg'),linear-gradient(90deg, #f2669a 0.01%, #fa5d5a 99.99%);
+				background-color: #f2669a;				
+			}
+			.lv-nav--link__profile:hover{			
+				background: no-repeat url('../imgs/user-pink.svg');
+				transition: background 0.2s linear;
+				
+			}
+
+}
