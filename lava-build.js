@@ -31343,8 +31343,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 						// убираем прелоадер
 						
 				this.loader = false  
-				this.first_name =  this.$store.userinfo.first_name
-				this.last_name = this.$store.userinfo.last_name
+				
 		          if(this.$store.userinfo.birthdate){
 		          	// добавит ьподдержку локализации
 		          	this.old = this.getAge(this.$store.userinfo.birthdate.split('-').reverse().join('.')) + ' YEARS OLD'
@@ -31352,7 +31351,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 		          
 		          this.following_count = this.$store.userinfo.following_count
 		          this.followers_count = this.$store.userinfo.followers_count
-
+		          this.first_name =  this.$store.userinfo.first_name
+				this.last_name = this.$store.userinfo.last_name
 
 
 
@@ -31366,7 +31366,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 		          // убираем прелоадер
 		          this.loader = false    
 
-		          this.fullname =  this.$store.userinfo.first_name+' '+this.$store.userinfo.last_name
+		          this.first_name =  this.$store.userinfo.first_name
+				this.last_name = this.$store.userinfo.last_name
 		          if(this.$store.userinfo.birthdate){
 		          	// добавит ьподдержку локализации
 		          	this.old = this.getAge(this.$store.userinfo.birthdate.split('-').reverse().join('.')) + ' YEARS OLD'
