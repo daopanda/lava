@@ -61,7 +61,8 @@ var store = {
     userlogin: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.login',
     userlogout: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.logout',
     userobject: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.getInfo',
-    usersetinfo: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.setInfo'
+    usersetinfo: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=users.setInfo',
+    userchangepassword: 'https://cors-anywhere.herokuapp.com/https://api.lava.top/api.php?method=profile.changePassword',
   },
   app:{
     newInstance: true
@@ -79,12 +80,11 @@ store.install = function(){
 
 // ## ROUTING mode:'history',
 const router = new VueRouter({
-  
+ 
   
   routes: [
   { 'path': '/singin', component: singin},
   { 'path': '/singup', component: singup},
-  { 'path': '/', component: lava_home },
   { 'path': '/settings', component: lava_settings,
     children: [
       { 'path': '', component:lava_settings_general},
@@ -95,7 +95,9 @@ const router = new VueRouter({
 
       ]
     },
-  { path: '*', component: lava_home }
+  { 'path' : '/', component: lava_home},
+  { 'path': '/:id', component: lava_home },
+  { 'path': '*', component: lava_home }
   ]
 
 })
@@ -173,6 +175,8 @@ var app = new Vue({
         
 
         this.$locale({l: this.$cookie.get('lava-lang')})
+
+        // получить данные с сервера
         
 
 
@@ -30135,6 +30139,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
 
 module.exports = {
 	data: function() {
@@ -30203,7 +30209,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.loader)?_c('preloader'):_vm._e(),_vm._v(" "),(!_vm.loader)?_c('div',{staticClass:"lv-wrapper"},[_c('div',{class:[{ 'slidetoleft': _vm.sliderFlagLeft}, { 'slidetoright': _vm.sliderFlagRight}, 'lv-wrapper--settings' ]},[_c('div',{staticClass:"lv-settings--leftcolumn "},[_c('div',{staticClass:"lv-settings--menu"},[_c('div',{staticClass:"lv-settings-nav--block"},[_vm._m(0),_vm._v(" "),_c('span',{staticClass:"lv-settings-nav--title"},[_vm._v("Settings")]),_vm._v(" "),_c('div',{staticClass:"lv-setting-nav--links"},[_c('router-link',{staticClass:"lv-settings-nav--link icn-settings-line ",attrs:{"to":"/settings","href":"#"},nativeOn:{"click":function($event){return _vm.slider($event)}}},[_vm._v("General settings")]),_vm._v(" "),_c('router-link',{staticClass:"lv-settings-nav--link icn-settings-lock-line",attrs:{"to":"/settings/privacy","href":"#"},nativeOn:{"click":function($event){return _vm.slider($event)}}},[_vm._v("Privacy")]),_vm._v(" "),_c('router-link',{staticClass:"lv-settings-nav--link icn-settings-bell-line",attrs:{"to":"/settings/notification","href":"#"},nativeOn:{"click":function($event){return _vm.slider($event)}}},[_vm._v("Notification")]),_vm._v(" "),_c('router-link',{staticClass:"lv-settings-nav--link icn-settings-blacklist-line",attrs:{"to":"/settings/blacklist","href":"#"},nativeOn:{"click":function($event){return _vm.slider($event)}}},[_vm._v("Blacklist")]),_vm._v(" "),_c('router-link',{staticClass:"lv-settings-nav--link icn-settings-repassword",attrs:{"to":"/settings/password","href":"#"},nativeOn:{"click":function($event){return _vm.slider($event)}}},[_vm._v("Password")])],1),_vm._v(" "),_vm._m(1)])])]),_vm._v(" "),_c('div',{staticClass:"lv-settings--rightcolumn "},[_c('span',{staticClass:"lv-settings-backtomenu",on:{"click":_vm.sliderback}},[_vm._v(" settings")]),_vm._v(" "),_c('router-view')],1)])]):_vm._e()],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings--photo"},[_c('a',{staticClass:"lv-userinfo--avatar",attrs:{"href":"#"}},[_vm._v(" AB ")]),_vm._v(" "),_c('a',{staticClass:"lv-settings-changephoto-button icn-camera-pink",attrs:{"href":"#"}},[_vm._v("Change profile photo")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-logout-wrap"},[_c('a',{staticClass:"lv-settings-nav--link--logout icn-logout",attrs:{"href":"#"}},[_vm._v("Log out")]),_vm._v(" "),_c('div',{staticClass:"lv-settings--langselect-wrapper"},[_c('div',{staticClass:"lv-lang-button--current"},[_vm._v("eng")]),_vm._v(" "),_c('div',{staticClass:"lv-lang-dropup"},[_c('div',{staticClass:"lv-lang-dropup--items"},[_c('a',{staticClass:"lv-lang-select-item",attrs:{"href":"#"}},[_vm._v(" eng")]),_vm._v(" "),_c('a',{staticClass:"lv-lang-select-item",attrs:{"href":"#"}},[_vm._v("рус")])])])])])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings--photo"},[_c('a',{staticClass:"lv-userinfo--avatar",attrs:{"href":"#"}},[_vm._v(" AB ")]),_vm._v(" "),_c('a',{staticClass:"lv-settings-changephoto-button icn-camera-pink",attrs:{"href":"#"}},[_vm._v("Change profile photo")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-logout-wrap"},[_c('a',{staticClass:"lv-settings-nav--link--logout icn-logout",attrs:{"href":"#"}},[_vm._v("Log out")]),_vm._v(" "),_c('div',{staticClass:"lv-settings--langselect-wrapper"},[_c('div',{staticClass:"lv-lang-button--current"},[_vm._v("eng")]),_vm._v(" "),_c('div',{staticClass:"lv-lang-dropup"},[_c('div',{staticClass:"lv-lang-dropup--items"},[_c('a',{staticClass:"lv-lang-select-item",attrs:{"href":"#"}},[_vm._v("eng")]),_vm._v(" "),_c('a',{staticClass:"lv-lang-select-item",attrs:{"href":"#"}},[_vm._v("рус")])])])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -30216,6 +30222,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 })()}
 },{"vue":14,"vue-hot-reload-api":9}],20:[function(require,module,exports){
 ;(function(){
+//
 //
 //
 //
@@ -30240,8 +30247,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._v("\n\tblacklist\n")])}
-__vue__options__.staticRenderFns = []
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("Blacklist")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"})])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -30249,7 +30256,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-208a0499", __vue__options__)
   } else {
-    hotAPI.reload("data-v-208a0499", __vue__options__)
+    hotAPI.rerender("data-v-208a0499", __vue__options__)
   }
 })()}
 },{"vue":14,"vue-hot-reload-api":9}],21:[function(require,module,exports){
@@ -30303,39 +30310,124 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-module.exports = {
-	data: function() {
-		return {
-			username:'',
-			first_name:'',
-			last_name:'',
-			email: '',
-			sex: ''
+	module.exports = {
+		data: function() {
+			return {
+				username:'',
+				first_name:this.$store.userinfo.first_name,
+				last_name:this.$store.userinfo.last_name,
+				email: this.$store.userinfo.email,
+				birthdate: this.$store.userinfo.birthdate.split('-').reverse().join('.'),
+				sex: this.$store.userinfo.sex,
+				activeMale: '',
+				activeFamale: '',
+				sendPreloader: false,
+				birthdate_format: ''
+				
+			}
+		},
+		computed:{
+	
+		},
+		methods:{
+			selectMale: function(){
+				// выбирает пол, если этот пол уже выбран, то сбрасывает пол на 0
+
+                    if(this.sex != 1){ 
+
+                        this.sex = 1  
+
+                    }else{                 
+
+                        this.sex = 0
+
+                    }
+
+               
+
+			},
+			selectFamale: function(){
+				    if(this.sex != 2){ 
+
+                        this.sex = 2  
+
+                    }else{                 
+
+                        this.sex = 0
+
+                    }
+
+               
+
+			},
+
+
+			sendGeneral: function(){
+			if(!this.sendPreloader){
+				// валидация формы
+				this.$validator.validateAll().then((result) => {
+                	// включает прелоадер на кнопке          	
+                    this.sendPreloader = true      
+                	// Установка даты под формат сервера Y-M-D
+                    this.birthdate_format = this.birthdate.split('.').reverse().join('-');
+                            
+                    	// отправка на сервер
+                        this.$http.get(this.$store.api.usersetinfo, {params: {
+                        	first_name: this.first_name,
+                        	last_name: this.last_name,
+                        	email: this.email,
+                        	birthdate: this.birthdate_format,
+                        	sex: this.sex
+
+                        }, 
+                        headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {				          
+				       		// записываем данные в память $store
+				       		this.$store.userinfo.first_name = this.first_name	
+				       		this.$store.userinfo.last_name = this.last_name     
+				         	this.$store.userinfo.email = this.email
+				         	this.$store.userinfo.birthdate = this.birthdate_format
+				         	this.$store.userinfo.sex = this.sex
+				          	// убираем прелоадер
+				          	this.sendPreloader = false  			          
+
+				        }, function(error){
+				        	 // Ошибка от сервера	                
+
+
+				        })
+                           
+
+
+                })
+			}	
+				
+			}
 			
+		},
+		created: function(){
+			    
 		}
-	},
-	methods:{
-		initial: function(){
-			this.username = this.$store.userinfo.first_name
-			this.first_name = this.$store.userinfo.first_name
-			this.last_name = this.$store.userinfo.last_name
-			this.email = this.$store.userinfo.email
-			this.sex = this.$store.userinfo.sex
-		}
-	},
-	created: function(){
-		this.initial()
-	}
 
-}
+	}
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("General settings")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"},[_c('form',[_c('div',{staticClass:"lv-settings-content--input-wrap"},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Name")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.first_name),expression:"first_name"}],staticClass:"lv-settings-content--input",attrs:{"type":"text","name":""},domProps:{"value":(_vm.first_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.first_name=$event.target.value}}})]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content--input-wrap"},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Last name")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.last_name),expression:"last_name"}],staticClass:"lv-settings-content--input",attrs:{"type":"text","name":""},domProps:{"value":(_vm.last_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.last_name=$event.target.value}}})]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content--input-wrap"},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Email")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"lv-settings-content--input",attrs:{"type":"text","name":""},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}})]),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_c('button',{staticClass:"lv-settings--button"},[_vm._v("SAVE")])])])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--input-wrap"},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Birthdate")]),_vm._v(" "),_c('input',{staticClass:"lv-settings-content--input",attrs:{"type":"text","name":""}})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings--gender-wrapper"},[_c('span',{staticClass:"lv-settings--gender-title"},[_vm._v("GENDER")]),_vm._v(" "),_c('div',{staticClass:"lv-settings--gender-control-wrapper"},[_c('div',{staticClass:"lv-settings--gender-button lv-gender-male-selected  icn-male"},[_vm._v("Male")]),_vm._v(" "),_c('div',{staticClass:"lv-settings--gender-button lv-gender-famale-selected icn-famale "},[_vm._v("Famale")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("General settings")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"},[_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('name')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Name")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"},{name:"model",rawName:"v-model",value:(_vm.first_name),expression:"first_name"}],staticClass:"lv-settings-content--input",attrs:{"maxlength":"15","type":"text","name":"name"},domProps:{"value":(_vm.first_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.first_name=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('name'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('name')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('lastname')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Last name")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required|alpha'),expression:"'required|alpha'"},{name:"model",rawName:"v-model",value:(_vm.last_name),expression:"last_name"}],staticClass:"lv-settings-content--input",attrs:{"maxlength":"20","type":"text","name":"lastname"},domProps:{"value":(_vm.last_name)},on:{"input":function($event){if($event.target.composing){ return; }_vm.last_name=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('lastname'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('lastname')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('email')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Email")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required|email'),expression:"'required|email'"},{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"lv-settings-content--input",attrs:{"name":"email","type":"text"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('email'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('email')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('birthdate')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Birthdate")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.birthdate),expression:"birthdate"},{name:"validate",rawName:"v-validate",value:('date_format:DD.MM.YYYY|date_between:01.01.1938,01.01.2006|required'),expression:"'date_format:DD.MM.YYYY|date_between:01.01.1938,01.01.2006|required'"}],staticClass:"lv-settings-content--input",attrs:{"type":"text","name":"birthdate"},domProps:{"value":(_vm.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.birthdate=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('birthdate'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('birthdate')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings--gender-wrapper"},[_c('span',{staticClass:"lv-settings--gender-title"},[_vm._v("GENDER")]),_vm._v(" "),_c('div',{staticClass:"lv-settings--gender-control-wrapper"},[_c('div',{class:[{ 'lv-gender-male-selected ': _vm.sex === 1}, 'lv-settings--gender-button', 'icn-male'],on:{"click":_vm.selectMale}},[_vm._v("Male")]),_vm._v(" "),_c('div',{class:[{ 'lv-gender-famale-selected  ': _vm.sex === 2}, 'lv-settings--gender-button', 'icn-famale'],on:{"click":_vm.selectFamale}},[_vm._v("Famale")])])]),_vm._v(" "),_c('button',{class:[{ 'lv-settings--sendpreload': _vm.sendPreloader}, 'lv-settings--button'],on:{"click":_vm.sendGeneral}},[_vm._v("SAVE")])])])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -30695,7 +30787,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-9d9a37c2", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-9d9a37c2", __vue__options__)
+    hotAPI.reload("data-v-9d9a37c2", __vue__options__)
   }
 })()}
 },{"vue":14,"vue-hot-reload-api":9}],24:[function(require,module,exports){
@@ -30709,21 +30801,127 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-module.exports = {
-	data: function() {
-		return {
-			
+	module.exports = {
+		data: function() {
+			return {
+
+					settings: {
+						password: '',
+						password_confirmation: ''
+					},
+					old_password: '',
+					sendPreloader: false,
+					outalldevices : true
+				
+			}
+		},
+		methods:{
+			changePasswords: function(){
+				if(!this.sendPreloader){
+					this.$validator.validateAll().then((result) => {
+					// включает прелоадер
+					this.sendPreloader = true
+
+						
+						// отправка запроса на сервер
+						
+				       this.$http.get(this.$store.api. userchangepassword, {params: {
+				       	password: this.old_password,
+				       	password_new: this.settings.password,
+				       	logout_others: this.outalldevices ? 1 : 0,
+				       }, headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {				          
+				       	 
+				         
+				         
+				          // убираем прелоадер
+				          this.sendPreloader = false  	
+
+
+				        if(response.data.message === "password_invalid"){
+
+                        // Генерирует ошибку если пароль не правильный
+
+                        this.errors.add({field:"old_password", msg: "Old password invalid"})
+                        
+                                      
+
+                        }else if(response.data.message === "password_match_error")	
+                         // Генерирует ошибку если новый пароль равен старому
+
+                        	this.errors.add({field:"password", msg: "New password match for old password"})
+
+				        }, function(error){
+				        	
+				        })
+				    })
+				}
+
+
+
+
+			},
+			changeDevices: function(){
+				this.outalldevices = !this.outalldevices
+			}
 		}
-	}
 
-}
+	}
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._v("\n\tpassword\n")])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("Password settings")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"},[_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('old_password')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Old Password")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required'),expression:"'required'"},{name:"model",rawName:"v-model",value:(_vm.old_password),expression:"old_password"}],staticClass:"lv-settings-content--input",attrs:{"type":"password","name":"old_password"},domProps:{"value":(_vm.old_password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.old_password=$event.target.value}}})]),_vm._v(" "),(_vm.errors.has('old_password'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('old_password')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('password')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("New Password")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required|min:6|confirmed'),expression:"'required|min:6|confirmed'"},{name:"model",rawName:"v-model",value:(_vm.settings.password),expression:"settings.password"}],staticClass:"lv-settings-content--input",attrs:{"type":"password","name":"password"},domProps:{"value":(_vm.settings.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.settings, "password", $event.target.value)}}})]),_vm._v(" "),(_vm.errors.has('password'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('password')))]):_vm._e(),_vm._v(" "),_c('div',{class:[{ 'lv-settings--input-iserror': _vm.errors.has('password_confirmation')}, 'lv-settings-content--input-wrap']},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Repeat Password")]),_vm._v(" "),_c('input',{directives:[{name:"validate",rawName:"v-validate",value:('required|min:6'),expression:"'required|min:6'"},{name:"model",rawName:"v-model",value:(_vm.settings.password_confirmation),expression:"settings.password_confirmation"}],staticClass:"lv-settings-content--input",attrs:{"type":"password","name":"password_confirmation"},domProps:{"value":(_vm.settings.password_confirmation)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.settings, "password_confirmation", $event.target.value)}}})]),_vm._v(" "),(_vm.errors.has('password_confirmation'))?_c('span',{staticClass:"lv-settings--validate-error"},[_vm._v(_vm._s(_vm.errors.first('password_confirmation')))]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings--password-devices-wrap"},[_c('div',[_c('div',{staticClass:"lv-settings-password-devices--item-wrap"},[_c('div',{staticClass:"lv-password-devices--item-title"},[_vm._v("Sing out on all devices")]),_vm._v(" "),_c('div',{class:[{'lv-settings-notice--cheker-off' : !_vm.outalldevices }, 'lv-settings-password-devices--checker'],attrs:{"id":""},on:{"click":_vm.changeDevices}},[_c('div',{staticClass:"lv-settings-notice--cheker-circle"})])])]),_vm._v(" "),_c('span',{staticClass:"lv-settings--password-devices--item-notice"},[_vm._v("if enabled, you will have to enter new password on all devices")])]),_vm._v(" "),_c('button',{class:[{ 'lv-settings--sendpreload': _vm.sendPreloader}, 'lv-settings--button'],on:{"click":_vm.changePasswords}},[_vm._v("SAVE")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -30889,61 +31087,88 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 
-module.exports = {
-	data: function() {
-		return {
-			privacy_profile: this.$store.userinfo.privacy.profile,
-			privacy_contacts: this.$store.userinfo.privacy.contacts,
-			privacy_messages: this.$store.userinfo.privacy.messages,
-			privacy_location:this.$store.userinfo.privacy.location,
-			privacy_wall: this.$store.userinfo.privacy.wall,
-			dropdownShow: false
-			
-		}
-	},
-	methods:{
-		selectShow: function(target){
+	module.exports = {
+		data: function() {
+			return {
+				privacy_profile: this.$store.userinfo.privacy.profile,
+				privacy_contacts: this.$store.userinfo.privacy.contacts,
+				privacy_messages: this.$store.userinfo.privacy.messages,
+				privacy_location:this.$store.userinfo.privacy.location,
+				privacy_wall: this.$store.userinfo.privacy.wall,
+				dropdownShow: false,
+				sendPreloader: false
+				
+			}
+		},
+		methods:{
+			selectShow: function(target){
 
-			if(this.dropdownShow === target){
-				this.dropdownShow = false
-			}else{
-				this.dropdownShow = target
+				if(this.dropdownShow === target){
+					this.dropdownShow = false
+				}else{
+					this.dropdownShow = target
+				}
+				
+				
+			},
+			setProfile: function(value){
+				this.privacy_profile = value
+				
+			
+			},			
+			setContacts:function(value){
+				this.privacy_contacts = value
+				
+			},
+			setMessages:function(value){
+				this.privacy_messages = value
+				
+			},
+			setLocation:function(value){
+				this.privacy_location = value
+				
+			},
+			setWall:function(value){
+				this.privacy_wall = value
+				
+			},
+			sendPrivacy: function(){
+				this.sendPreloader = true
+
+				// отправка на сервер
+                this.$http.get(this.$store.api.usersetinfo, {params: {
+                   	privacy_profile: this.privacy_profile,
+                   	privacy_contacts: this.privacy_contacts,
+                   	privacy_messages: this.privacy_messages,
+                   	privacy_location: this.privacy_location,
+                   	privacy_wall: this.privacy_wall
+	                }, 
+                    headers: {'X-Auth-Token': this.$store.api.token}}).then( function(response)  {				          
+		       		// записываем данные в память $store
+		       		this.$store.userinfo.privacy.profile = this.privacy_profile	
+		       		this.$store.userinfo.privacy.contacts = this.privacy_contacts    
+		         	this.$store.userinfo.privacy.messages = this.privacy_messages
+		         	this.$store.userinfo.privacy.location = this.privacy_location
+		         	this.$store.userinfo.privacy.wall = this.privacy_wall
+		          	// убираем прелоадер
+		          	this.sendPreloader = false  			          
+			        }, function(error){
+	        		// Ошибка от сервера	                
+
+
+				})
 			}
 			
-			
-		},
-		setProfile: function(value){
-			this.privacy_profile = value
-			
-		
-		},			
-		setContacts:function(value){
-			this.privacy_contacts = value
-			
-		},
-		setMessages:function(value){
-			this.privacy_messages = value
-			
-		},
-		setLocation:function(value){
-			this.privacy_location = value
-			
-		},
-		setWall:function(value){
-			this.privacy_wall = value
-			
+
 		}
-		
 
 	}
-
-}
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("Privacy settings")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"},[_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'profile' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('profile')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my profile")]),_vm._v(" "),(_vm.privacy_profile === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_profile === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_profile === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'contacts' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('contacts')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my followers")]),_vm._v(" "),(_vm.privacy_contacts === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_contacts === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_contacts === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'messages' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('messages')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can write me private messages")]),_vm._v(" "),(_vm.privacy_messages === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_messages === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_messages === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'location' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('location')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my location")]),_vm._v(" "),(_vm.privacy_location === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_location === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_location === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'wall' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('wall')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can comment on my wall")]),_vm._v(" "),(_vm.privacy_wall === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_wall === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_wall === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('button',{staticClass:"lv-settings--button",on:{"click":function($event){}}},[_vm._v("SAVE")])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-settings-content--wrapper"},[_c('h2',{staticClass:"lv-settings-content--title"},[_vm._v("Privacy settings")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-form--wrapper"},[_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'profile' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('profile')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my profile")]),_vm._v(" "),(_vm.privacy_profile === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_profile === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_profile === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setProfile('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'contacts' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('contacts')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my followers")]),_vm._v(" "),(_vm.privacy_contacts === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_contacts === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_contacts === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setContacts('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'messages' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('messages')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can write me private messages")]),_vm._v(" "),(_vm.privacy_messages === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_messages === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_messages === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setMessages('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'location' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('location')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can see my location")]),_vm._v(" "),(_vm.privacy_location === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_location === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_location === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setLocation('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('div',{class:[{ 'lv-settings-select--dropdownShow': _vm.dropdownShow === 'wall' }, 'lv-settings-content--select-wrap' ],on:{"click":function($event){_vm.selectShow('wall')}}},[_c('label',{staticClass:"lv-settings-content--label"},[_vm._v("Who can comment on my wall")]),_vm._v(" "),(_vm.privacy_wall === 'none')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Nobody")]):_vm._e(),_vm._v(" "),(_vm.privacy_wall === 'friends')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Only followers")]):_vm._e(),_vm._v(" "),(_vm.privacy_wall === 'all')?_c('div',{staticClass:"lv-settings-content-select"},[_vm._v("Eventyone")]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown"},[_c('div',{staticClass:"lv-settings-content-dropdown-wrap"},[_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('none')}}},[_vm._v("\n\t\t\t\t\t\t\tNobody\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('friends')}}},[_vm._v("\n\t\t\t\t\t\t\tOnly followers\n\t\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-settings-content-dropdown-item",on:{"click":function($event){_vm.setWall('all')}}},[_vm._v("\n\t\t\t\t\t\t\tEventyone\n\t\t\t\t\t\t")])])])]),_vm._v(" "),_c('button',{class:[{ 'lv-settings--sendpreload': _vm.sendPreloader}, 'lv-settings--button'],on:{"click":_vm.sendPrivacy}},[_vm._v("SAVE")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -30952,11 +31177,13 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-68234af8", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-68234af8", __vue__options__)
+    hotAPI.reload("data-v-68234af8", __vue__options__)
   }
 })()}
 },{"vue":14,"vue-hot-reload-api":9}],26:[function(require,module,exports){
 ;(function(){
+//
+//
 //
 //
 //
@@ -31068,12 +31295,23 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 	module.exports = {
 		data: function() {
 			return {
 				loader: true,
-				fullname : '',
+				last_name: '',
+				first_name: '',
 				old: ' ',
 				following_count: 0,
 				followers_count: 0
@@ -31105,7 +31343,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 						// убираем прелоадер
 						
 				this.loader = false  
-				this.fullname =  this.$store.userinfo.first_name+' '+this.$store.userinfo.last_name
+				this.first_name =  this.$store.userinfo.first_name
+				this.last_name = this.$store.userinfo.last_name
 		          if(this.$store.userinfo.birthdate){
 		          	// добавит ьподдержку локализации
 		          	this.old = this.getAge(this.$store.userinfo.birthdate.split('-').reverse().join('.')) + ' YEARS OLD'
@@ -31168,8 +31407,8 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.loader)?_c('preloader'):_vm._e(),_vm._v(" "),(!_vm.loader)?_c('div',{staticClass:"lv-content-wrapper"},[_c('div',{staticClass:"lv-content-leftcolumn"},[_c('div',{staticClass:"lv-userinfo"},[_c('div',{staticClass:"lv-userinfo--head"},[_c('a',{staticClass:"lv-userinfo--avatar",attrs:{"href":"#"}},[_vm._v("AB")]),_vm._v(" "),_c('a',{staticClass:"lv-userinfo--balance",attrs:{"href":"#"}},[_vm._v("p")]),_vm._v(" "),_c('router-link',{staticClass:"lv-userinfo--settings",attrs:{"to":"/settings"}},[_vm._v("s\n\t\t\t")])],1),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--bg"},[_c('div',{staticClass:"lv-userinfo--info"},[_c('span',{staticClass:"lv-userinfo--name"},[_vm._v(_vm._s(_vm.fullname))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--stats"},[_c('span',{staticClass:"lv-userinfo--online"},[_vm._v("ONLINE")]),_vm._v(" "),_c('span',{staticClass:"lv-userinfo--old"},[_vm._v(_vm._s(_vm.old))])])]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--status"}),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v(_vm._s(_vm.followers_count))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("FOLLOWERS")])]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v(_vm._s(_vm.following_count))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("FOLLOWING")])])])])])]),_vm._v(" "),_vm._m(1)]):_vm._e()],1)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v("0")]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("POSTS")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-content-rightcolumn"},[_c('div',{})])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.loader)?_c('preloader'):_vm._e(),_vm._v(" "),(!_vm.loader)?_c('div',{staticClass:"lv-content-wrapper"},[_c('div',{staticClass:"lv-content-leftcolumn"},[_c('div',{staticClass:"lv-userinfo"},[_c('div',{staticClass:"lv-userinfo--bg"},[_c('div',{staticClass:"lv-userinfo--head"},[_c('a',{staticClass:"lv-userinfo--avatar",attrs:{"href":"#"}},[_vm._v("AB")]),_vm._v(" "),_c('a',{staticClass:"lv-userinfo--balance",attrs:{"href":"#"}},[_vm._v("p")]),_vm._v(" "),_c('router-link',{staticClass:"lv-userinfo--settings",attrs:{"to":"/settings"}},[_vm._v("s\n\t\t\t\t\t\t")])],1),_vm._v(" "),_c('span',{staticClass:"lv-userinfo--name"},[_vm._v(_vm._s(_vm.first_name))]),_vm._v(" "),_c('span',{staticClass:"lv-userinfo--lastname"},[_vm._v(_vm._s(_vm.lastname))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--stats"},[_c('span',{staticClass:"lv-userinfo--online"},[_vm._v("ONLINE")]),_vm._v(" "),_c('span',{staticClass:"lv-userinfo--old"},[_vm._v(_vm._s(_vm.old))])]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--status"},[_vm._v("\n\t\t\t\t\t\t\tSTATUS BIO\n\n\t\t\t\t\t")]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v(_vm._s(_vm.followers_count))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("FOLLOWERS")])]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v(_vm._s(_vm.following_count))]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("FOLLOWING")])])])])])]),_vm._v(" "),_vm._m(1)]):_vm._e()],1)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-userinfo--social--item"},[_c('div',{staticClass:"lv-userinfo--social--count"},[_vm._v("0")]),_vm._v(" "),_c('div',{staticClass:"lv-userinfo--social--title"},[_vm._v("POSTS")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"lv-content-rightcolumn"},[_c('div',{},[_vm._v("Photo Albums\n\t\t\t")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return

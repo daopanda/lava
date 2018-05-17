@@ -175,57 +175,68 @@ body{
 		background-color: #e7e7e7;
 	}
 
-	/* PROFILE */
+
+
+
+	/*#############################
+	###-------------------------###
+
+			PROFILE
+			
+	###-------------------------###
+	#############################*/
+
+
+
 	.lv-content-wrapper{
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: nowrap;		
 		width: 100%;
-		margin-top: 5em;
 		
+		margin-top: 5em;
 	}
 	.lv-content-leftcolumn{
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 	}
-		/* USERINFO */
+	.lv-content-rightcolumn{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
 
-		.lv-userinfo{
-				
-			width: 95%;
-			margin-left: 5%;
-			display: flex;
-			flex-direction: column;
+
+
+
+	/*#############################
+	###-------------------------###
+
+			PROFILE LEFT
 			
+	###-------------------------###
+	#############################*/
 
-		}
-		.lv-userinfo--bg{
-			padding-top: 0em;
-			padding-bottom: 1em;
-			background: #FFF;
-			border-radius: 1em 0 0 1em;
-		
-			padding-left: 8%;		
-			box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
-		}
 
-		/* USER AVATAR and etc */
 
-		.lv-userinfo--head{		
-			
+	.lv-userinfo--head{
 			display: flex;
 			align-items: center;
+			flex-grow: 0;
 			flex-direction: row;
 			position: relative;
 			top:-3em;
-			width: 95%;
-			margin-left: 5%;
-
-		}
-		.lv-userinfo--avatar{
+			width: 100%;
+			
+	}
+	.lv-userinfo--avatar{
 			display: block;
 			width: 3em;
 			height: 3em;
-			border-radius: 50%;
+			border-radius: 3em;
 			background:linear-gradient(90deg, #f2669a 0.01%, #fa5d5a 99.99%);
 			color: #FFF;
 			font-size: 200%;
@@ -233,7 +244,7 @@ body{
 			text-align: center;
 			line-height: 3em;			
 			box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
-		}
+	}
 		.lv-userinfo--balance{
 			display: block;
 			width: 2.5em;
@@ -271,89 +282,108 @@ body{
 
 
 		}
+	.lv-userinfo{
+		width: 95%;
+		margin-left: 5%;
+		display: flex;
+		flex-direction: column;
+
+	}
 		
-		/* USER NAME LASTNAME AND OLD etc*/
-
-		.lv-userinfo--info{
-			padding: 2em 0 0 0;
-
-			border-bottom: solid 1px #ccc;
-
-		}
-
-		.lv-userinfo--name{
-			color: #3B3848;	
-			font-size: 1.4em;
-
-			font-weight: 600;
-			line-height: 1.2em;
-
-		}
-		.lv-userinfo--stats{
-			padding: 1em 0;
-			display: flex;
 
 
-		}
-		.lv-userinfo--old{
+	.lv-userinfo--bg{
+		background:#FFF;
+		border-radius: 1em 0em 0em 1em;	
+		width: 92%;
+		padding-left: 8%;
+		padding-bottom: 2em;	
+		flex-grow: 1;	
+		display: flex;
+		flex-direction: column;	
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		position: relative;
+		justify-content: flex-start;
+		box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);	
+	}
+
+	.lv-userinfo--name{
+		position: relative;
+		top: -1em;
+		
+		overflow: hidden;
+		color: #3B3848;	
+		display: block;
+		font-size: 1.6em;
+		font-weight: 600;
+		line-height: 1.5em;
+	}
+	.lv-userinfo--lastname{
+		position: relative;
+		overflow: hidden;
+		top: -1em;
+		display: block;
+		color: #3B3848;	
+		font-size: 1.6em;
+		font-weight: 600;
+		line-height: 1.5em;
+	}
+
+	.lv-userinfo--stats{
+		
+		display: flex;
+		
+		height: 1em;
+		line-height: 0em;
+
+		border-bottom: solid 1px #ccc;
+	}
+	.lv-userinfo--old{
 			font-size: 0.7em;
 			display: flex;
 			color: #797296;
 			width: 50%;
 		}
-		.lv-userinfo--online{
+	.lv-userinfo--online{
 			font-size: 0.7em;
 			display: flex;
 			color: #797296;
 			width: 50%;
 		}
-		/* USERINFO STATUS */
-		.lv-userinfo--status{
-			border-bottom: solid 1px #ccc;
-			min-height: 4em;
-		}
 
-		/* USER SOCIAL STATS */
-		.lv-userinfo--social{
-			display: flex;
-			flex-direction: row;
-			padding-top: 1em;
-			justify-content: space-between;
-			padding-right: 5%;
+	.lv-userinfo--status{
+		padding: 1em 0;
+		color: #797296;
+		min-height: 3em;
+	}
+	.lv-userinfo--social{
+		border-top: solid 1px #ccc;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 
+	}
+	.lv-userinfo--social--item:last-child{
+		padding-right: 1em;
+	}
+	.lv-userinfo--social--count{
+		font-size: 1.4em;
+		font-weight: 600;
+		padding-bottom: 0.2em;
+		color: #100E0E;
+	}
+	.lv-userinfo--social--item{
+		display: block;
+		
+		padding-top: 1em ;
+	}
 
-		}
-		.lv-userinfo--social--item{
-			display: flex;
-			flex-direction: column;
-			
-			
-			font-size: 0.8em;
-			color: #797296;
-
-		}
-
-			.lv-userinfo--social--count{
-				font-size: 1.4em;
-				display: block;
-				color: #000;
-				font-weight: 600;
-				padding-bottom: 0.6em;
-			}
-			.lv-userinfo--social--title{
-				display: block;
-			}
-	
-
-
-
-
-
-
-
-
-
-
+	.lv-userinfo--social--title{
+		font-size: 0.8em;
+		color: #797296;
+	}
 
 
 
@@ -387,18 +417,23 @@ body{
 	.lv-wrapper--settings{
 		display: flex;
 		flex-direction: row;
-		width: 200%;
-	
+		width: 195%;
+		margin-left: 5%;
+	align-items: stretch;
 		margin-top: 5em;
 		flex-wrap: nowrap;
+		min-height: 40em;
+		border-radius: 1em ;	
+	box-shadow: 0 5px 20px rgba(235, 87, 87, 0.2);
 		
 	
 	}
 	.lv-settings--menu{
-		width: 95%;
-		margin-left: 5%;
+		width:100%;
+		margin-left: 0;
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 
 	}
 
@@ -406,33 +441,30 @@ body{
 		background:#FFF;
 		border-radius: 1em 0em 0em 1em;	
 		width: 92%;
-		padding-left: 8%;
-		padding-top: 3em;
+		padding-left: 8%;		
 		padding-bottom: 1em;
-		flex-grow: 1;
-		
+		flex-grow: 1;		
 		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
 		position: relative;
 		justify-content: flex-start;
+		height: 100%;
 
 				
 	}
 
 		/*SETTINGS NAV */
 		.lv-settings--photo{
-			
-			display: flex;
-			align-items: center;
 			flex-grow: 0;
+			display: flex;
 			flex-direction: row;
-			
+			align-items: center;
 			position: relative;
-			top: -3em;
 			
-			width: 90%;			
-			margin-left: 5%;
+			
+			width: 100%;			
+			top: -3em;
 			
 			
 		}
@@ -455,12 +487,14 @@ body{
 		.lv-settings-nav--title{
 			color: #3B3848;	
 			font-size: 1.4em;
-			padding-top: 1.5em;
+			
 			display: block;
 			font-weight: 600;
 			line-height: 1.2em;
 			
-			padding-bottom: 0.5em;
+			
+			position: relative;
+			top: -1em;
 		}
 		.lv-setting-nav--links{
 			display: flex;
@@ -603,23 +637,25 @@ body{
 
 	
 			.lv-settings-backtomenu{
-				font-size:1em;
-				background-color: #f5f5f5;
+				font-size:0.8em;
+				
 				text-transform: uppercase;
-				color: #272238;
+				color: #797296;
+				text-transform: uppercase;
 				display:block;
 				padding: 1em 0em 1em 2em;
+				position: absolute;
+				top: -4em;
+				left: 1em;
 				cursor: pointer;
-				background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgc3R5bGU9Imlzb2xhdGlvbjppc29sYXRlIiB2aWV3Qm94PSIwIDAgOCAxMyIgd2lkdGg9IjgiIGhlaWdodD0iMTMiPjxkZWZzPjxjbGlwUGF0aCBpZD0iX2NsaXBQYXRoX0V1Y2lhWTFwYzhpSFY1Y0I2YXc0b2xob2JWVGREUnRmIj48cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSIxMyIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNfY2xpcFBhdGhfRXVjaWFZMXBjOGlIVjVjQjZhdzRvbGhvYlZUZERSdGYpIj48cGF0aCBkPSIgTSA2LjY2NyAxMyBMIDAgNi41IEwgNi42NjcgMCBMIDggMS4zIEwgMi42NjcgNi41IEwgOCAxMS43IEwgNi42NjcgMTMgWiAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0icmdiKDIwOSwyMDksMjE0KSIvPjwvZz48L3N2Zz4=);
-				background-repeat: no-repeat;
-				background-position: 1em center;
-			}
+				background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAxMiAyMSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9IkNhbnZhcyIgZmlsbD0ibm9uZSI+CjxnIGlkPSJCYWNrIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0gOS41NDQ1NSAwLjQxOTAyNEwgMC4zODY5NDEgOS41NTYyN0MgLTAuMTI4OTggMTAuMDcwMyAtMC4xMjg5OCAxMC45Mjg0IDAuMzg2OTQxIDExLjQ0NDVMIDkuNTQ0NTUgMjAuNTc5N0MgMTAuMTA2MiAyMS4xNDAxIDEwLjk5MjggMjEuMTQwMSAxMS41NTQ0IDIwLjU3OTdDIDEyLjE0ODUgMTkuOTg2NSAxMi4xNDg1IDE4Ljk5ODYgMTEuNTU0NCAxOC40MDQzTCAzLjg4NDY1IDEwLjc1MjFDIDMuNzQ1NTEgMTAuNjEzOSAzLjc0NTUxIDEwLjM4NDggMy44ODQ2NSAxMC4yNDY2TCAxMS41NTQ0IDIuNTk0MzZDIDEyLjE0ODUgMi4wMDExOCAxMi4xNDg1IDEuMDEzMjYgMTEuNTU0NCAwLjQxOTAyNEMgMTEuMjczMSAwLjE0MDM3OCAxMC45MTE1IDAgMTAuNTUgMEMgMTAuMTg3NCAwIDkuODI1ODcgMC4xNDAzNzggOS41NDQ1NSAwLjQxOTAyNFoiIGZpbGw9IiM3OTcyOTYiLz4KPC9nPgo8L2c+Cjwvc3ZnPgoK) left no-repeat;
+					}
 
 
 			/* SETTINGS CONTENT*/
 			.lv-settings-content--wrapper{
 				width: 90%;
-				padding: 0 5%;
+				padding: 2em 5%;
 				height: auto;
 				
 			}
@@ -784,17 +820,17 @@ body{
 
 			}
 			.lv-settings-content-dropdown:before{
-    	display: block;
-    	width: 100%;
-    	height: 1em;
-    	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0iaXNvbGF0aW9uOmlzb2xhdGUiIHZpZXdCb3g9IjAgMCA0MCA5IiBoZWlnaHQ9IjEwMCUiPjxwYXRoIGQ9IiBNIDAgOSBMIDEwLjk4OSA5IEMgMTAuOTg5IDkgMTAuOTg5IDkgMTAuOTg5IDkgQyAxNS45OTEgOSAyMC42MTIgNi4zMzIgMjMuMTEzIDIgTCAyMy40MDIgMS41IEMgMjMuNDAyIDEuNSAyMy40MDIgMS41IDIzLjQwMiAxLjUgQyAyNC41NTcgLTAuNSAyNy40NDMgLTAuNSAyOC41OTggMS41IEMgMjguNTk4IDEuNSAyOC41OTggMS41IDI4LjU5OCAxLjUgTCAyOS4zOTIgMi44NzYgQyAzMS41OCA2LjY2NSAzNS42MjQgOSA0MCA5IEwgMTAuOTg5IDkgTCAwIDkgWiAiIGZpbGw9IiNGRkYiLz48L3N2Zz4=) right bottom no-repeat;
-    	background-size: 3em;
-    	
-    	background-position: 90% 100%;
-    	position: relative;
-    	z-index: 1000;
-    	content: '';
-    }
+		    	display: block;
+		    	width: 100%;
+		    	height: 1em;
+		    	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBzdHlsZT0iaXNvbGF0aW9uOmlzb2xhdGUiIHZpZXdCb3g9IjAgMCA0MCA5IiBoZWlnaHQ9IjEwMCUiPjxwYXRoIGQ9IiBNIDAgOSBMIDEwLjk4OSA5IEMgMTAuOTg5IDkgMTAuOTg5IDkgMTAuOTg5IDkgQyAxNS45OTEgOSAyMC42MTIgNi4zMzIgMjMuMTEzIDIgTCAyMy40MDIgMS41IEMgMjMuNDAyIDEuNSAyMy40MDIgMS41IDIzLjQwMiAxLjUgQyAyNC41NTcgLTAuNSAyNy40NDMgLTAuNSAyOC41OTggMS41IEMgMjguNTk4IDEuNSAyOC41OTggMS41IDI4LjU5OCAxLjUgTCAyOS4zOTIgMi44NzYgQyAzMS41OCA2LjY2NSAzNS42MjQgOSA0MCA5IEwgMTAuOTg5IDkgTCAwIDkgWiAiIGZpbGw9IiNGRkYiLz48L3N2Zz4=) right bottom no-repeat;
+		    	background-size: 3em;
+		    	
+		    	background-position: 90% 100%;
+		    	position: relative;
+		    	z-index: 1000;
+		    	content: '';
+    		}
     		.lv-settings-content-dropdown-wrap{
     			background: #FFF;
     			border-radius: 1em;
@@ -825,7 +861,7 @@ body{
 
     		}
 
-    		/* PASSWORD */
+    		/* PASSWORD ##############################################################################*/
     		.lv-settings--password-devices-wrap{
     			display: block;
     			margin-top: 5em;
@@ -842,9 +878,11 @@ body{
 
     		}
     		.lv-password-devices--item-title{
-    			font-size: 1.1em;
+    			font-size: 0.8em;
+    			line-height: 1.5em;
     			display: inline-block;
     			width: 60%;
+    			margin-left: 2em;
     			color: #3B3848;
 			
     		}
@@ -938,12 +976,12 @@ body{
 
 .slidetoleft{
 	animation: SlideLeft 0.5s ease-in;
-	margin-left: -100%;
+	margin-left: -98%;
 
 	}
 .slidetoright{
 	animation: SlideRight 0.5s ease-out;
-	margin-left: 0%;
+	margin-left: 5%;
 	
 }
 
@@ -956,15 +994,42 @@ body{
 @media screen and (max-width: 320px){
 
 
-			.lv-settings-changephoto-button{
+		.lv-settings-changephoto-button{
 		
 			
 			font-size: 0.6em;
-		
+			line-height: 2.35em;
 			
 			
 	
 		}
+
+	
+		
+			.lv-settings--gender-control-wrapper{
+				display: flex;
+				flex-direction: row;
+				border-top: solid 1px #BCBBC1;
+				border-bottom: solid 1px #BCBBC1;
+
+			}
+			.lv-settings--gender-button{
+				width: 50%;
+				height: 5em;
+				line-height: 5em;
+				cursor: pointer;
+				background-repeat: no-repeat;
+				background-size: 1.3em;
+				box-sizing: border-box;
+				padding-left: 3.5em;
+				color: #3B3848;
+				background-position: 1em center;
+
+			}
+
+
+
+
 
 }
 
@@ -1029,21 +1094,6 @@ body{
 		width: 91%;				
 		padding: 0.5em 0 0.5em 8%;				
 	}
-	/* USERINFO */
-
-		.lv-userinfo{					
-			width: 90%;
-			margin: 0 auto;
-		}
-		.lv-userinfo--bg{
-			padding: 2em;	
-			background: #FFF;
-			border-radius: 1em;
-				
-				
-			box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
-		}
-
 
 		/* SETTINGS NAV*/
 		.lv-settings-changephoto-button{
@@ -1060,6 +1110,29 @@ body{
 			
 	
 		}
+		.lv-password-devices--item-title{
+    			font-size: 1.1em;
+    			
+    		
+    			margin-left: 0em;
+    		
+			
+    		}
+
+
+
+ /* USERINFO */
+
+
+	.lv-userinfo--bg{
+	
+		width: 84%;
+		padding-right: 8%;
+		
+	}
+	.lv-userinfo--social--item:last-child{
+		padding-right: 0;
+	}
 }
 
 
@@ -1127,109 +1200,133 @@ body{
 		padding: 0.5em 0 0.5em 8%;				
 	}
 
-	/* USERINFO */
-	.lv-content-wrapper{
-		flex-direction: row;	
-	}
+	/*#############################
+	###-------------------------###
 
+			PROFILE USER
+			
+	###-------------------------###
+	#############################*/
+	
 	.lv-content-leftcolumn{
+		
+		flex-basis: 18em;
+		
+		flex-shrink: 0;
 		display: flex;
 		flex-direction: column;
-		width: 35%;
-	}
-	.lv-userinfo{					
-		width: 90%;
-		margin: 0 auto;
-	}
-	.lv-userinfo--bg{
-		padding: 1em ;	
-		background: #FFF;
-		border-radius: 0em 1em 1em 0em;
-		box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
 	}
 	.lv-userinfo{
-				
-			width: 100%;
-			margin-left: 0%;
-
-			
-
-		}
-	.lv-userinfo--name{
-		display: block;
-		padding: 1em 0;
-	}
-
-			/* SETTINGS NAV*/
-		.lv-settings-changephoto-button{
-			background-position: 8% center ;
-			padding: 0.5em 1em 0.5em 3em;
-			border-radius: 2em ;
-			height: 2em;
-			font-size: 0.8em;
-			margin-right: 5%;
-			
-	
-		}
-	.lv-wrapper--settings{
-	
 		width: 100%;
+		margin-left: 0%;
+	}
+	.lv-userinfo--bg{
+		border-radius: 0 1em 1em 0;
+		
+		width: 84%;
+		padding-right: 8%;
+		
+	}
+	.lv-content-wrapper{
+		flex-direction: row;
+		align-items: stretch;
+		
+	}
+	.lv-userinfo--social--item:last-child{
+		padding-right: 0;
+	}
+
+
+
+	/*#############################
+	###-------------------------###
+
+			PROFILE CONTENT
+			
+	###-------------------------###
+	#############################*/
+
+	.lv-content-rightcolumn{
+		display: flex;
+		flex-direction: column;
+		min-width: 32.8em;
+		max-width: 41.9em;
+		
+		
+		
+	
+
+				
+		margin-left: auto;
+	
+
+	}
+
+	/*#############################
+	###-------------------------###
+
+			SETTINGS NAV
+			
+	###-------------------------###
+	#############################*/
+	.lv-settings-changephoto-button{
+		background-position: 8% center ;
+		padding: 0.5em 1em 0.5em 3em;
+		border-radius: 2em ;
+		height: 2em;
+		line-height: 2.4em;
+		font-size: 0.6em;
+		margin-right: 1em;
 		}
 
-
-
-
+	.lv-wrapper--settings{
+		width: 100%;
+			box-shadow: 0 5px 20px rgba(235, 87, 87, 0.2);
+		}
 	.lv-settings--leftcolumn{
-		
-		width: 40%;
+		flex-basis: 18em;
+		flex-shrink: 0;
 		position: relative;
-
-				
-				
 	}
+
 	.lv-settings--rightcolumn{
-
-				width: 60%;
-
-
-				border-radius: 0;
-
-
-		
-			}
+		width: 100%;
+		border-radius: 0;
+	}
 
 	.lv-settings--menu{
 		width: 100%;
 		margin-left: 0%;
-
-
 	}
 
 	.lv-settings-nav--block{
-		
 		border-radius: 0;	
-	
-				
-	}
-
-		.lv-settings-logout-wrap{
-		margin-top: 2em;
-
-		}
-
-.slidetoleft{
-	animation: none;
-	margin-left: 0%;
 
 	}
-.slidetoright{
-	animation: none;
-	margin-left: 0%;
-	
-}
-.lv-settings-backtomenu{
-	display: none;
-}
+
+	.lv-settings-logout-wrap{
+		align-self: flex-end;
+	}
+
+	.slidetoleft{
+		animation: none;
+		margin-left: 0%;
+	}
+	.slidetoright{
+		animation: none;
+		margin-left: 0%;
+	}
+	.lv-settings-backtomenu{
+		display: none;
+	}
+
+	.lv-password-devices--item-title{
+    			font-size: 1.1em;
+    			
+    		
+    			margin-left: 0em;
+    		
+	}
 
 
 
@@ -1310,80 +1407,86 @@ body{
 		flex-direction: row;	
 	}
 
-
-	.lv-userinfo{					
-		width: 90%;
-		margin: 0 auto;
+	.lv-userinfo{
+		width: 100%;
+		margin: 0;
+		
 	}
 
+	.lv-userinfo--bg{
+		background:#FFF;
+		border-radius: 1em;	
+		width: 90%;
+		margin-left:1em;
+		padding: 0 2em 2em 2em;
+		box-sizing: border-box;
+
+		
+		flex-grow: 1;	
+	
+		box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);	
+	}
 
 
 	.lv-content-leftcolumn{
 		display: flex;
 		flex-direction: column;
-		width: 30%;
-		max-width: 20em;
+		flex-basis:24em;
+		flex-shrink: 0;
+		
 	}
-	.lv-userinfo{					
+	.lv-content-rightcolumn{
 		width: 100%;
-		margin: 0 auto;
-	}
-	.lv-userinfo--name{
-		display: block;
-		padding: 1em 0;
-	}
-	.lv-userinfo--bg{
-		padding: 1em ;	
-		background: #FFF;
-		border-radius: 0em 1em 1em 0em;
-		box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
-	}
-	.lv-userinfo{
-				
-		width: 100%;
-		margin-left: 0%;
+			}
 
-			
-
+.lv-userinfo--social--item:last-child{
+		padding-right: 0;
 	}
 
-			/* SETTINGS NAV*/
-		.lv-settings-changephoto-button{
-			background-position: 8% center ;
-			padding: 0.5em 1em 0.5em 3em;
-			border-radius: 2em ;
-			height: 2em;
-			font-size: 0.8em;
-			margin-right: 5%;
-			
-	
-		}
+	/* SETTINGS NAV*/
+	.lv-settings-changephoto-button{
+		background-position: 8% center ;
+		padding: 0.5em 1em 0.5em 3em;
+		border-radius: 2em ;
+		height: 2em;
+		font-size: 0.8em;
+		margin-right: 5%;
+	}
 	.lv-wrapper--settings{
 	
 		width: 100%;
-		}
+			box-shadow: 0 5px 20px rgba(235, 87, 87, 0.2);
+	}
 
 
 
 
 	.lv-settings--leftcolumn{
-		
-		width: 40%;
+		flex-basis:24em;
+		flex-shrink: 0;
+	
 		position: relative;
 
 				
 				
 	}
 	.lv-settings--rightcolumn{
-
-				width: 60%;
-
-
-				border-radius: 0;
-
-
-		
-			}
+		width: 100%;
+		border-radius: 0;		
+	}
+	.lv-settings-content--wrapper{
+		width: 70%;
+		padding: 2em 15%;
+		min-height: 40em;
+	}
+			.lv-password-devices--item-title{
+    			font-size: 1.1em;
+    			
+    		
+    			margin-left: 0em;
+    		
+			
+    		}
 
 	.lv-settings--menu{
 		width: 100%;
@@ -1395,14 +1498,19 @@ body{
 	.lv-settings-nav--block{
 		
 		border-radius: 0;	
-	
-				
+		width: 100%;
+		box-sizing: border-box;
+		padding-left: 3em;
+		
 	}
 
-		.lv-settings-logout-wrap{
-		margin-top: 2em;
 
-		}
+
+
+
+.lv-settings-logout-wrap{
+		align-self: flex-end;
+	}
 
 .slidetoleft{
 	animation: none;
@@ -1461,9 +1569,6 @@ body{
 @media screen and (min-width: 1281px) and (max-width: 2000px){  
 
 
-	.lv-settings--leftcolumn{
-		width: 30%;
-	}
 	.lv-header{			
 		width: 86%;
 		padding: 0 7%;
@@ -1509,65 +1614,68 @@ body{
 		position: initial;
 	}
 	/* USERINFO */
+	/* PROFILE */
 	.lv-content-wrapper{
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: flex-start;
-		flex-wrap: nowrap;
-		
-		width: 90%;
-		margin: 5em auto 0 auto;
+			align-items: stretch;
+		margin: 5em auto 0 auto;	
+		width: 86%;	
 	}
 		
 		.lv-content-leftcolumn{
-			
-			display: flex;
-			flex-direction: column;
-			width: 30%;
-			
-			
-			max-width: 23em;
+		
+		display: flex;
+		flex-direction: column;
+		flex-basis: 20em;
+		flex-shrink: 0;
+		min-width: 20em;
 		}
 		.lv-content-rightcolumn{
-			display: flex;
-			flex-direction: column;
-			width: 50%;
-			border-left: solid 1px #ccc;
-			min-height: 110vh;
-			
-			padding-top: 5em;
-			
-			margin-top: 5em;
-		}
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	
+		border-left: solid 1px #ccc;
+		min-height: 110vh;			
+	
+	}
+	.lv-userinfo{
+		width: 100%;
+		margin: 0;
+		
+	}
 
-		.lv-userinfo{					
-			width: 80%;
-			margin-right:2em;
-		}
-		.lv-userinfo--bg{
-			padding: 0em 2em 2em 2em;	
-			background: #FFF;
-			border-radius: 1em;
-			box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);
-		}
-		.lv-userinfo--name{
-			display: block;
-			padding: 0.5em 0;
-			font-size: 2em;
-			max-width: 15em;
-		}
+	.lv-userinfo--bg{
+		background:#FFF;
+		border-radius: 1em;	
+		width: 100%;
+		margin-left:0;
+		padding: 0 2em 2em 2em;
+		box-sizing: border-box;
+
+		
+		flex-grow: 1;	
+	
+		box-shadow: 0 10px 20px rgba(235, 87, 87, 0.2);	
+	}
+	.lv-userinfo--social--item:last-child{
+		padding-right: 0;
+	}
+
 
 		/* SETTINGS */
 
 	.lv-settings-nav--title{
 			
 			font-size:2em;
-			padding-top: 1.5em;
+			
 			display: block;
 			font-weight: 600;
-			line-height: 1.2em;
+			line-height: 1.5em;
+			position: relative;
+			top: -0.5em;
 			
-			padding-bottom: 0.5em;
+			padding-bottom: 0em;
 	}
 
 
@@ -1577,15 +1685,17 @@ body{
 		box-shadow: 0 5px 20px rgba(235, 87, 87, 0.2);
 		border-radius: 1em;
 		min-height: 40em;
+		align-items: stretch;
 		
 	}
 
 
 	.lv-settings--leftcolumn{
-		width: 30%;
+		
 			
-			
-		max-width: 23em;
+	flex-basis: 22em;
+		flex-shrink: 0;
+		min-width: 22em;
 				
 				
 	}
@@ -1593,7 +1703,7 @@ body{
 
 	.lv-settings--rightcolumn{
 		background: #fff;
-		width: 70%;
+		width: 100%;
 		
 		height: auto;
 		flex-grow: 1;
@@ -1623,12 +1733,11 @@ body{
 		}
 		.lv-settings-nav--block{
 		
-		width: 95%;
-		padding-left: 5%;
-		padding-top: 3em;
+		width: 100%;
+		padding-left: 2em;		
 		padding-bottom: 1em;
-
 		height: auto;
+		box-sizing: border-box;
 		flex-grow: 1;
 
 				
@@ -1650,7 +1759,14 @@ body{
 	.lv-setting-nav--links .router-link-exact-active{
 			color: #F8728A;
 		}
-
+		.lv-password-devices--item-title{
+    			font-size: 1.1em;
+    			
+    		
+    			margin-left: 0em;
+    		
+			
+    		}
 
 .slidetoleft{
 	animation: none;
