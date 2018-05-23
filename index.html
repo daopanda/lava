@@ -14,9 +14,9 @@
 
 
 
-	<div id="app" :lang="$store.api.token">
+	<div id="app" :lang="$apistore.token">
 
-		<lava-header v-if="$store.api.token"></lava-header>
+		<lava-header v-if="$apistore.token"></lava-header> 
 
 		<router-view >
 		</router-view>
