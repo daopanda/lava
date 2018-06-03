@@ -65,6 +65,25 @@ input[type=date]{
 	font-family: 'sans-serif' !important;
 	font-size: 1em;
 }
+
+.lv-albums-show-all-button{
+	text-align: center;
+	color: #797296;
+	border-top: solid 1px #E9E9EA;
+	border-bottom: solid 1px #E9E9EA;
+	cursor: pointer;
+	font-size: 0.8em;
+	padding: 1.2em 0;
+	text-transform: uppercase;
+}
+.lv-albums-show-all-button:hover{
+	color: #F8728A;
+}
+.lv-user-verify{
+	width: 0.6em;
+	height: 0.6em;
+	margin-left: 0.2em;
+}
 .lv-footer-wrap{
 	color: #D6CBE7;
 	padding-top: 2em;
@@ -1329,10 +1348,10 @@ color: #FFF;
 		}
 
 	.lv-userinfo--status{
-		padding: 1em 0;
+		padding: 0em 0em 1em 0;
 		color: #797296;
 		min-height: 3em;
-		max-height: 10em;
+		
 		overflow: hidden;
 
 
@@ -1343,7 +1362,7 @@ color: #FFF;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		overflow: hidden;
+		
 		align-items: stretch;
 
 		width: 200%;
@@ -1365,14 +1384,22 @@ color: #FFF;
 	}
 	.lv-userinfo-biotext{
 		display: block;
-		width: 100%;
+		width: 50%;
+		max-width: 50%;
+		flex-basis: 50%;
+		flex-grow: 0;
+		flex-shrink: 0;
+		
+		word-wrap: break-word;
 		height: 100%;
 		
 	}
 	.lv-userinfo-bio-button{
 		display: flex;
-		width: 100%;
-		height: 100%;
+		width: 50%;
+		flex-basis: 50%;
+		flex-grow: 0;
+		flex-shrink: 0;
 		cursor: pointer;
 		background: #F7F6F8;
 		box-sizing: border-box;
@@ -1680,6 +1707,24 @@ color: #FFF;
 		padding: 1em 1em;
 		border-radius: 3em;
 	}
+
+	.lv-album-view-addphoto-inalbums{	
+		position: relative;
+		overflow: hidden;
+		background: linear-gradient(101.18deg, #6253B8 -15.74%, #ED80C2 114.26%);
+		box-shadow: 0px 10px 24px rgba(155, 81, 224, 0.2);
+		color: #FFF;
+		text-transform: uppercase;
+		font-size: 0.7em;
+		width: 8em;
+		text-align: center;
+		cursor: pointer;
+		margin-left: 0;
+		margin-right: 2em;
+		padding: 1em 1em;
+		border-radius: 3em;
+
+	}
 .lv-album-addphoto-ipt{
 			  font-size: 100px;
   				position: absolute;
@@ -1773,13 +1818,16 @@ color: #FFF;
 	}
 
 	.lv-wall-albums--title{
-
+		cursor: pointer;
 		color: #3B3848;
 		text-decoration: none;
 		font-size: 1.6em;
 		font-weight: 600;
 		align-items: center;
 		justify-content: center;
+	}
+	.lv-wall-albums--title:hover{
+		color: #F8728A;
 	}
 
 
@@ -1946,6 +1994,8 @@ color: #FFF;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		padding-bottom: 1em;
+		border-bottom: solid 1px #E9E9EA;
 		
 
 	}
@@ -3294,7 +3344,8 @@ color: #FFF;
 		margin-bottom: 1em;
 		display: flex;
 		flex-direction: column;
-		margin-right: 1%;
+		margin-left: 0.5%;
+		margin-right: 0.5%;
 		text-decoration: none;
 
 
@@ -3404,11 +3455,14 @@ color: #FFF;
 	
 		padding-bottom: 0em;
 	}
+	.lv-album-view-addphoto-inalbums{
+		margin-left: auto;
+	}
 	.lv-albums--add-album-button{
 		align-self: center;
 		display: block;
 		justify-content: flex-end;
-		margin-left: auto;
+		margin-left: 0;
 		padding: 1em 2em;
 		font-size: 0.7em;
 		
@@ -4151,11 +4205,14 @@ color: #FFF;
 		margin-bottom: 1em;
 		display: flex;
 		flex-direction: column;
-		margin-right: 1%;
+		margin-left: 0.5%;
+		margin-right: 0.5%;
 		text-decoration: none;
 
 
 	}
+
+
 	
 	.lv-album-item--wrap:last-child{
 		margin-bottom: 0em;	
@@ -4868,7 +4925,8 @@ color: #FFF;
 		margin-bottom: 1em;
 		display: flex;
 		flex-direction: column;
-		margin-right: 1%;
+		margin-left: 0.5%;
+		margin-right: 0.5%;
 		text-decoration: none;
 
 
