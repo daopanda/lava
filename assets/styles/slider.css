@@ -540,7 +540,9 @@
 		
 
 	}
-
+	.lv-slider-video-container{
+		min-width: 40em;
+	}
 
 
 
