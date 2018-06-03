@@ -61,6 +61,55 @@ body{
 	min-width: 280px !important;
 
 }
+input[type=date]{
+	font-family: 'sans-serif' !important;
+	font-size: 1em;
+}
+.lv-footer-wrap{
+	color: #D6CBE7;
+	padding-top: 2em;
+	display: none;
+}
+.lv-footer-wrap-settings{
+	color: #D6CBE7;
+	padding-top: 2em;
+	display: block;
+	padding-top: 2em;
+	margin-top: 2em;
+	margin-left: 5%;
+	border-top: solid 1px #D6CBE7;
+
+}
+
+.lv-footer-link{
+	display: inline-block;
+	margin-left: 0.5em;
+	padding-left: 0.5em;
+	text-decoration: none;
+	color: #D6CBE7;
+	cursor: pointer;
+	border-left: 1px solid #D6CBE7;
+}
+.lv-footer-link:first-child{
+	border-left: 0px;
+		margin-left: 0em;
+	padding-left: 0em;
+
+}
+.lv-footer-link:hover{
+	color: #f8728a;
+}
+.lv-footer-copyright{
+	display: block;
+	padding-top: 1em;
+}
+
+.lv-footer-wrap-settings .lv-footer-copyright{
+	display: block;
+
+
+}
+
 
 
 .lv-photo-gallery-wrap {
@@ -1253,7 +1302,10 @@ color: #FFF;
 		display: flex;
 		
 		height: 1em;
-		line-height: 0em;
+		line-height: 1em;
+		top: -1em;
+		position: relative;
+		padding-bottom: 0.5em;
 
 		border-bottom: solid 1px #ccc;
 	}
@@ -1266,8 +1318,14 @@ color: #FFF;
 	.lv-userinfo--online{
 			font-size: 0.7em;
 			display: flex;
+			background-repeat: no-repeat;
+			background-position: right 45%;
+			padding-right: 1.2em;
 			color: #797296;
-			width: 50%;
+			background-size: 0.8em;
+			width: auto;
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjMiIGN5PSIzIiByPSIzIiBmaWxsPSIjNURERjg5Ii8+PC9zdmc+);
+
 		}
 
 	.lv-userinfo--status{
@@ -2703,7 +2761,21 @@ color: #FFF;
     			background: url('../imgs/search-notfound.svg') no-repeat ;
     			padding-bottom: 2em;
     			
-    			background-position: center 2em;
+    			background-position: center 10%;
+    		}
+    		.lv-search-popup--notfound-full{
+    			background: url('../imgs/search-notfound.svg') no-repeat ;
+    			
+    			
+    			background-position: center 10%;
+    			padding: 1em 0 2em 0;
+    		}
+
+    		.lv-search-popup--notfound-full .lv-search-popup--notfound-title{
+
+    		}
+    		.lv-search-popup--notfound-full .lv-search-popup--notfound-for{
+    			padding-top: 2em;
     		}
     		.lv-search-popup--notfound-title{
     			display: block;
@@ -3382,8 +3454,20 @@ color: #FFF;
 
 
 @media screen and (min-width: 813px) and (max-width: 959px){ 
+.lv-footer-wrap{
+	color: #D6CBE7;
+	padding-top: 2em;
+	display: block;
+	padding-left: 1em;
+}
+.lv-footer-wrap-settings{
+	width: 90%;
+}
+.lv-footer-wrap-settings .lv-footer-copyright{
+	float: right;
+	padding-top: 0em;
 
-
+}
 	.lv-profile-button-follows-wrap{
 		 margin-right: 0em;	
 		
@@ -3574,18 +3658,21 @@ color: #FFF;
 		}
 
 	.lv-wrapper--settings{
-		width: 100%;
+		width: 90%;
 			box-shadow: 0 5px 20px rgba(235, 87, 87, 0.2);
+			border-radius: 1em;
+
 		}
 	.lv-settings--leftcolumn{
 		flex-basis: 18em;
 		flex-shrink: 0;
 		position: relative;
+		border-radius: 1em 0 0 1em;
 	}
 
 	.lv-settings--rightcolumn{
 		width: 100%;
-		border-radius: 0;
+		border-radius: 0em 1em 1em 0;
 	}
 
 	.lv-settings--menu{
@@ -3594,7 +3681,7 @@ color: #FFF;
 	}
 
 	.lv-settings-nav--block{
-		border-radius: 0;	
+		border-radius: 1em 0 0 1em;	
 
 	}
 
@@ -3602,14 +3689,16 @@ color: #FFF;
 		align-self: flex-end;
 	}
 
-	.slidetoleft{
-		animation: none;
-		margin-left: 0%;
+.slidetoleft{
+	animation: none;
+	margin-left: 5%;
+
 	}
-	.slidetoright{
-		animation: none;
-		margin-left: 0%;
-	}
+.slidetoright{
+	animation: none;
+	margin-left: 0%;
+	
+}
 	.lv-settings-backtomenu{
 		display: none;
 	}
@@ -3735,6 +3824,28 @@ color: #FFF;
 
 
 @media screen and (min-width: 960px) and (max-width: 1280px){  
+	
+.lv-footer-wrap{
+	color: #D6CBE7;
+	padding-top: 2em;
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+	padding-left: 0em;
+}
+
+.lv-footer-wrap-settings{
+	
+}
+.lv-footer-wrap-settings .lv-footer-copyright{
+	float: right;
+	padding-top: 0em;
+	margin-right: 2em;
+
+}
+
+
+
 	.lv-profile-button-follows-wrap{
 		 margin-right: 0em;	
 		
@@ -3957,7 +4068,7 @@ color: #FFF;
 
 .slidetoleft{
 	animation: none;
-	margin-left: 0%;
+	margin-left: 5%;
 
 	}
 .slidetoright{
@@ -4307,6 +4418,31 @@ color: #FFF;
 
 
 @media screen and (min-width: 1281px) {  
+
+
+	.lv-footer-wrap{
+	color: #D6CBE7;
+	padding-top: 2em;
+	display: block;
+	width: auto;
+	margin: none;
+	padding-left: 0em;
+}
+
+.lv-footer-wrap-settings{
+	width: 86%;
+	margin: 2em auto 0 auto;
+}
+.lv-footer-wrap-settings .lv-footer-copyright{
+	float: right;
+	padding-top: 0em;
+	margin-right: 0em;
+
+}
+
+
+
+
 	.lv-profile-button-follows-wrap{
 		 margin-right: -1em;	
 		
