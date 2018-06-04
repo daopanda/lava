@@ -263,7 +263,8 @@
 .auth_wrapper{
 	min-height: 100vh;
 	height: auto;	
-	background: linear-gradient(0deg, rgba(98, 83, 184, 0.8) -0.3%, rgba(237, 128, 194, 0.8) 173.29%),url('../imgs/background.svg') no-repeat;
+	box-shadow: inset 0px 0px 100px 0px rgba(166,114,184,1);
+	background: linear-gradient(to bottom, #9362a8, #6b53a4),url('../imgs/background.svg') no-repeat;
 	background-blend-mode: overlay;
 	display: flex;
 	flex-direction:column;
@@ -507,13 +508,13 @@ html[lang=ru-RU] .auth-h1--redline{
 
 	/* ERRORS INPUTS */
 	.input-iserror{
-		border-color: #F86173;
+		border-color: #f86173;
 	}
 	.input-issucces{
 		border-color: #06D458;
 	}
 	.validate-error{
-		color: #F86173;
+		color: #f86173;
 		font-size: 0.8em;
 		display: block;
 		padding-bottom: 1em;
