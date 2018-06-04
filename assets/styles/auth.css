@@ -264,7 +264,7 @@
 	min-height: 100vh;
 	height: auto;	
 	box-shadow: inset -99px 0px 100px 0px rgba(166,114,184,0.7);
-	background: linear-gradient(to bottom, #9362a8, #6b53a4),url('../imgs/background.svg') no-repeat;
+	background: linear-gradient(45deg, rgba(107,83,164,1) 0%,rgba(147,98,168,1) 100%),url('../imgs/background.svg') no-repeat;
 	background-blend-mode: overlay;
 	display: flex;
 	flex-direction:column;
