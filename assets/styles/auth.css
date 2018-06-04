@@ -5,6 +5,8 @@
 	line-height: 1.5em;
 }
 
+
+
 .restore-pouop-wrap{
 	display: flex;
 	position: absolute;
@@ -421,6 +423,17 @@
 	
 	
 	}
+
+
+html[lang=ru-RU] .auth_h1{
+	font-size: 2.4em;
+}
+html[lang=ru-RU] .auth-h1--redline{
+	font-size: 1.4em;
+	padding-top: 0.2em;
+}
+
+
 	.auth-h1--redline{
 		display: block;
 		text-align: right;
