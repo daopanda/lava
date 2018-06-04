@@ -263,7 +263,7 @@
 .auth_wrapper{
 	min-height: 100vh;
 	height: auto;	
-	box-shadow: inset 0px 0px 100px 0px rgba(166,114,184,1);
+	box-shadow: inset -99px 0px 100px 0px rgba(166,114,184,0.7);
 	background: linear-gradient(to bottom, #9362a8, #6b53a4),url('../imgs/background.svg') no-repeat;
 	background-blend-mode: overlay;
 	display: flex;
