@@ -302,6 +302,7 @@ input[type=date]{
 		height: 3em;
 		background-color:red;
 		border-radius: 50%;
+		cursor: pointer;
 	}
 
 
@@ -2993,6 +2994,7 @@ color: #FFF;
     		}
 
     		.lv-avatar-small{
+    			cursor: pointer;
     			width: 3em;
     			height: 3em;
     			text-decoration: none;
