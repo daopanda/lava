@@ -18,6 +18,80 @@
 
 
 
+.eula-wrapper{
+	display:flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	background: #faf6f6;
+
+}
+.eula-title{
+	font-size: 2.5em;
+	color: #3b3848;
+	font-weight: 800;
+	padding-bottom: 1em;
+}
+.eula-header{
+	background: #FFF;
+	box-shadow: 0 -0.5px 10px rgba(0, 0, 0, 0.07);
+	padding: 1em 0 2em 0;
+}
+.eula-logo-wrapper{
+
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+}
+.eula-content{
+	width: 90%;
+	margin: 2em auto;
+	font-size: 1em;
+	line-height: 1.5em;
+	max-width: 800px;
+	box-sizing: border-box;
+	border-radius: 1em;
+	padding: 2em;
+	background: #FFF;
+	color: #3B3848;
+}
+	.eula-logo-link{		
+		font-size: 1.2em;
+		font-family: 'icomoon';
+		text-decoration: none;				
+		color: #3B3848;	
+		overflow: hidden;		
+	}
+	.eula-logo{
+		width:2em;	
+		position: relative;
+		top: 0.1em;
+		margin-right: 0.5em;
+		
+		
+				
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .auth-calendar{
 	top: calc(100% - 200px) !important;
