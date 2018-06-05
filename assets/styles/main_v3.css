@@ -1416,6 +1416,18 @@ color: #FFF;
 		
 
 	}
+
+	.lv-userinfo-noboitext .lv-userinfo-biotext{
+		
+	}
+	.lv-userinfo-noboitext .lv-userinfo-status-wrap{
+		margin-left: -100%;
+	}
+	
+	.lv-userinfo-noboitext:hover .lv-userinfo-status-wrap{
+		margin-left: -100%;
+	}
+	
 	.lv-userinfo-biotext{
 		display: block;
 		width: 50%;
@@ -1438,7 +1450,7 @@ color: #FFF;
 		background: #F7F6F8;
 		box-sizing: border-box;
 		padding: 1em 0;
-		
+		cursor: pointer;
 		
 		align-items: center;
 		
