@@ -293,6 +293,7 @@ input[type=date]{
 		overflow-y: scroll;
 		height: auto;
 		padding-right: 1em;
+		max-height: 70vh;
 
 	}
 
