@@ -1,4 +1,69 @@
 
+::-webkit-input-placeholder { /* Chrome */
+  color: #fff;
+  opacity: 0.3;
+}
+::-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+  opacity: 0.3;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+  opacity: 0.3;
+}
+::-moz-placeholder { /* Firefox 4 - 18 */
+  color: #fff;
+  opacity: 0.3;
+}
+
+
+
+
+.auth-calendar{
+	top: calc(100% - 200px) !important;
+}
+html{
+	widows: 100%;
+	min-height: 100%;
+	height: auto ;
+	display: block;
+
+}
+body{
+	widows: 100%;
+	min-height: 100%;
+	height: auto ;
+	display: block;
+	
+}
+#app{
+	height: auto ;
+}
+
+	
+
+
+.form-linksresend{
+		font-family: 'SF Pro Text', sans-serif;
+		line-height: 100%;
+		font-size: 0.8em;			
+		text-decoration-line: underline;
+		text-transform: uppercase;
+		color: #F6D580;
+		position: relative;
+		top: -0.8em;
+		cursor: pointer;
+		
+		
+	}
+
+.restore-form-text2{
+	color: #FFF;
+	padding-bottom: 1em;
+	line-height: 1.5em;
+}
+
+
 .restore-form-text{
 	color: #FFF;
 	padding-bottom: 2em;
@@ -125,7 +190,7 @@
 	flex-direction: column;
 	width: 100%;
 	justify-content: center;
-	padding-top: 2em;
+	padding-top: 1em;
 
 }
 .avatar-left{
@@ -144,7 +209,7 @@
 	color: #FFF;
 	justify-content: center;
 
-	padding-top: 1em;
+	padding-top: 2em;
 	
 	
 	
@@ -179,13 +244,21 @@
 .avatar-text-bold{
 	display: block;
 	font-weight: 600;
+	font-size: 16px;
+	line-height: 1.4em;
 	padding-bottom: 1em;
 	
 }
 .avatar-text-regular{
 	display: block;
+	font-size: 14px;
+	line-height: 1.4em;
+	font-weight: 300 !important;
+	font-family: "SF Pro Text", sans-serif;
 	
 }
+
+
 .button-upload{
 	
 	background: #FFF;
@@ -420,14 +493,14 @@
 	font-size: 3.6em;
 	line-height: 105%;
 	width: 100%;	
-	font-weight: 600;
+	font-weight: 800;
 	
 	
 	}
 
 
 html[lang=ru-RU] .auth_h1{
-	font-size: 2.4em;
+	font-size: 2.8em;
 }
 html[lang=ru-RU] .auth-h1--redline{
 	font-size: 1.4em;
@@ -505,6 +578,11 @@ html[lang=ru-RU] .auth-h1--redline{
 		box-sizing: border-box;
 		display: inline;
 	}
+
+
+
+
+
 
 	/* ERRORS INPUTS */
 	.input-iserror{
@@ -722,6 +800,22 @@ html[lang=ru-RU] .auth-h1--redline{
 		position: relative;
 		top: 0.1em;
 	}
+html[lang=ru-RU] 	.auth-links--wrapper .router-link-active{
+		font-weight: 600;
+		font-size: 1.8em;
+		order: 1;
+
+		/* visual baseline */
+		position: relative;
+		top: 0em;
+	}
+
+	html[lang=ru-RU] .auth-links{
+		
+		font-size: 1.4em;
+		
+
+	}
 
 	.form{
 		padding-top: 2em;
@@ -808,6 +902,12 @@ html[lang=ru-RU] .auth-h1--redline{
 		position: relative;
 		top: 0.1em;
 	}
+
+
+
+
+
+
 
 	.form{
 		padding-top: 2em;
@@ -926,7 +1026,7 @@ html[lang=ru-RU] .auth-h1--redline{
 		display: none;
 	}
 }
-@media screen and (min-width: 1026px) and (max-width: 1365px){  
+@media screen and (min-width: 1026px) and (max-width: 1280px){  
 	.auth_main{
 		padding-top: 6vh;
 		width: 90%;
@@ -938,7 +1038,7 @@ html[lang=ru-RU] .auth-h1--redline{
 	}
 
 	.auth_forms{
-		width:35% !important;
+		width:35%;
 
 	}
 
