@@ -1423,7 +1423,7 @@ color: #FFF;
 		flex-basis: 50%;
 		flex-grow: 0;
 		flex-shrink: 0;
-		
+		min-height: 4em;
 		word-wrap: break-word;
 		height: 100%;
 		
