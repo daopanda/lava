@@ -1427,7 +1427,7 @@ color: #FFF;
 	.lv-userinfo-noboitext:hover .lv-userinfo-status-wrap{
 		margin-left: -100%;
 	}
-	
+
 	.lv-userinfo-biotext{
 		display: block;
 		width: 50%;
@@ -1436,6 +1436,8 @@ color: #FFF;
 		flex-grow: 0;
 		flex-shrink: 0;
 		min-height: 4em;
+		max-height: 10em;
+		overflow: hidden;
 		word-wrap: break-word;
 		height: 100%;
 		
