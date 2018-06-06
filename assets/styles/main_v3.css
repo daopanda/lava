@@ -3000,6 +3000,29 @@ color: #FFF;
     			
 
     		}
+
+    		.lv-fullsearch-name-wrap{
+    			
+    			width: 100%;
+    			height: 4em;
+    			display: flex;
+    			flex-direction: column;
+    			justify-content: center;
+    			overflow: hidden;
+    			margin-left: 5%;
+    			border-bottom: solid 1px #E5E5E5;
+    			
+
+ 				}
+
+ 				.lv-fullsearch-lastname{
+ 					max-width: 100%;
+ 				}
+ 				.lv-fullsearch-name{
+ 					max-width: 100%;
+ 				}
+
+
     			.lv-search-popup-result--firstname{
     				height:1em;
     				line-height: 1em;
@@ -4603,6 +4626,38 @@ html[lang="ru-RU"] .lv-profile-button-following{
 
 
 @media screen and (min-width: 1281px) {  
+
+.lv-fullsearch-name-wrap{
+    			text-overflow: ellipsis;
+    			width: 100%;
+    			height: 4em;
+    			display: flex;
+
+    			flex-direction: row;
+    			justify-content: flex-start;
+    			align-items: center;
+    			overflow: hidden;
+    			margin-left: 5%;
+    			border-bottom: solid 1px #E5E5E5;
+    			
+
+ }
+ .lv-fullsearch-lastname{
+ 	display: inline-block;
+ 	position: relative;
+ 	top: -1px;
+ 	margin-left: 0.2em;
+ }
+ .lv-fullsearch-name{
+ 	display: inline-block;
+
+ 	
+ }
+
+
+
+
+
 
 
 	.lv-footer-wrap{
