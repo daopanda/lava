@@ -2206,7 +2206,8 @@ input[type=date]{
 	}
 
 	.lv-album-item--wrap{
-		
+		width: 290px;
+		margin: 0 auto;
 		margin-bottom: 1em;
 		display: flex;
 		flex-direction: column;
@@ -2216,13 +2217,15 @@ input[type=date]{
 	}
 	.lv-album-item--wrap:last-child{
 		margin-bottom: 0em;	
+
 	}
 	.lv-album-item--img{
 		background-color: #F2F2F4;
-		width: 100%;
-
 		
-		height: 15em;
+		width: 290px;
+		height: 200px;
+		
+		
 		border-radius: 0.5em;
 		cursor: pointer;
 		background-image: url('../imgs/album_bg.svg');
@@ -3284,6 +3287,40 @@ input[type=date]{
 @media screen and (max-width: 320px){
 
 
+		.lv-album-item--wrap{
+		width: 240px;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+
+
+	}
+	.lv-album-item--wrap:last-child{
+		margin-bottom: 0em;	
+
+	}
+	.lv-album-item--img{
+	
+		
+		width: 240px;
+		height: 165px;
+		
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
 		.lv-settings-changephoto-button{
 		
 			
@@ -3506,22 +3543,21 @@ input[type=date]{
 	.lv-albums--wrapper{
 		padding-top: 1em;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
 	}
 	.lv-albums--wrapper > div:first-child{
 		
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
 	}
 	.lv-album-item--wrap{
-		width: 49%;
-		margin-bottom: 1em;
+		width: 305px;
+		margin: 0 auto 1em auto;
 		display: flex;
 		flex-direction: column;
-		margin-left: 0.5%;
-		margin-right: 0.5%;
+		
 		text-decoration: none;
 
 
@@ -3532,9 +3568,8 @@ input[type=date]{
 	}
 	.lv-album-item--img{
 		
-		width: 100%;
-
-		height: 10em;
+		width: 305px;
+		height: 210px;
 		border-radius: 0.5em;
 		
 	}
@@ -3606,14 +3641,35 @@ input[type=date]{
 
     	}
 
-    	.lv-album-item--img{
-		
-		width: 100%;
 
-		height: 15em;
-		border-radius: 0.5em;
+
+
+
+
+	
+	
+	.lv-album-item--wrap{
+		width: 305px;
+		margin: 0 auto 1em auto;
+		display: flex;
+		flex-direction: column;
+		
+	
+
+
+	}
+	
+	.lv-album-item--wrap:last-child{
+		margin-bottom: 0em;	
+	}
+	.lv-album-item--img{
+		
+		width: 305px;
+		height: 210px;
+	
 		
 	}
+    
 
 
 
@@ -4460,14 +4516,15 @@ html[lang="ru-RU"] .lv-profile-button-following{
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		justify-content: space-around;
 	}
 	.lv-album-item--wrap{
-		width: 49%;
+		width: 240px;
 		margin-bottom: 1em;
 		display: flex;
 		flex-direction: column;
-		margin-left: 0.5%;
-		margin-right: 0.5%;
+		margin-left: auto;
+		margin-right: auto;
 		text-decoration: none;
 
 
@@ -4480,10 +4537,9 @@ html[lang="ru-RU"] .lv-profile-button-following{
 	}
 	.lv-album-item--img{
 		
-		width: 100%;
+		width: 240px;
+		height: 165px;
 
-		height: 12em;
-		border-radius: 0.5em;
 		
 	}
 
@@ -4747,7 +4803,35 @@ html[lang="ru-RU"] .lv-profile-button-following{
 
 
 
+@media screen and (min-width: 1120px){
 
+
+
+	.lv-album-item--wrap{
+		width: 305px;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		margin-left: auto;
+		margin-right: auto;
+		text-decoration: none;
+
+
+	}
+
+
+	
+	.lv-album-item--wrap:last-child{
+		margin-bottom: 0em;	
+	}
+	.lv-album-item--img{
+		
+		width: 305px;
+		height: 210px;
+
+		
+	}
+}
 
 
 
@@ -5599,7 +5683,30 @@ html[lang="ru-RU"] .lv-profile-button-following{
 
 
 	
+.lv-album-item--wrap{
+		width: 305px;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		margin-left: 1em;
+		margin-right: 1em;
+		text-decoration: none;
 
+
+	}
+
+
+	
+	.lv-album-item--wrap:last-child{
+		margin-bottom: 0em;	
+	}
+	.lv-album-item--img{
+		
+		width: 305px;
+		height: 210px;
+
+		
+	}
 
 
 
