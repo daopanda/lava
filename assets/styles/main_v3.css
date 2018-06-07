@@ -2233,6 +2233,50 @@ input[type=date]{
 		background-position: center;
 		overflow: hidden;
 	}
+
+	.lv-video-albums--wrapper{
+		padding-top: 1em;
+		display: flex;
+		width: 100%;
+
+		height: auto;
+		flex-direction: column;
+	}
+
+	.lv-video-album-item--wrap{
+				width: 290px;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+	}
+
+	.lv-video-album-item--img{
+		background-color: #F2F2F4;
+		
+		width: 290px;
+		height: 218px;
+		
+		
+		border-radius: 0.5em;
+		cursor: pointer;
+		background-image: url('../imgs/album_bg.svg');
+		background-repeat: no-repeat;
+		background-position: center;
+		overflow: hidden;
+	}
+
+
+
+
+	.lv-video-album-item--img:hover .lv-album-item-delete{
+		visibility: visible;
+	}
+
+
+
+
 	
 	.lv-album-item--img:hover .lv-album-item-delete{
 		visibility: visible;
@@ -3311,7 +3355,32 @@ input[type=date]{
 		
 	}
 
+.lv-video-albums--wrapper{
+		padding-top: 1em;
+		display: flex;
+		width: 100%;
 
+		height: auto;
+		flex-direction: column;
+	}
+
+	.lv-video-album-item--wrap{
+				width: 240px;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+	}
+
+	.lv-video-album-item--img{
+	
+		
+		width: 240px;
+		height: 180px;
+		
+		
+	}
 
 
 
@@ -3386,6 +3455,36 @@ input[type=date]{
 
 
 @media screen and (min-width: 451px) and (max-width: 812px){  
+
+	.lv-video-albums--wrapper{
+		padding-top: 1em;
+		display: flex;
+		width: 100%;
+
+		height: auto;
+		flex-direction: column;
+	}
+
+	.lv-video-album-item--wrap{
+		width: 360px;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+	}
+
+	.lv-video-album-item--img{
+	
+		
+		width: 360px;
+		height: 270px;
+		
+		
+	}
+
+
+
 
 .lv-profile-button-follows-wrap{
 		 margin-right: 0em;	
@@ -3588,6 +3687,45 @@ input[type=date]{
 
 
 @media screen and (min-width: 600px){
+
+
+	.lv-video-albums--wrapper{
+		padding-top: 1em;
+		display: flex;
+		width: 100%;
+
+		height: auto;
+		flex-direction: column;
+	}
+
+	.lv-video-album-item--wrap{
+		width: 480px;
+		margin: 0 auto;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+	}
+
+	.lv-video-album-item--img{
+	
+		
+		width: 480px;
+		height: 360px;
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
   	.lv-search--button-follow{    			
     	line-height: 3em;
     	font-size: 0.8em;
@@ -4852,6 +4990,51 @@ html[lang="ru-RU"] .lv-profile-button-following{
 
 
 @media screen and (min-width: 1281px) {  
+
+	.lv-video-albums--wrapper{
+		padding-top: 1em;
+		display: flex;
+		width: 100%;
+
+		height: auto;
+		flex-direction: row ;
+		flex-wrap: wrap;
+	}
+
+	.lv-video-album-item--wrap{
+		width: 480px;
+		margin: 0 1em;
+		margin-bottom: 1em;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+	}
+
+	.lv-video-album-item--img{
+	
+		
+		width: 480px;
+		height: 360px;
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .lv-fullsearch-name-wrap{
     			text-overflow: ellipsis;
