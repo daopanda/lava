@@ -884,15 +884,16 @@ input[type=date]{
 		text-align: center;
 		justify-content: center;
 		border-radius: 3em;
-		border: 1px solid  rgba(121, 114, 150, 0.2);
+		border: 1px solid  #e4e3ea;
 		cursor: pointer;
 		text-transform: uppercase;
 		color:  #797296;
 	}
 	.lv-searchfilter-gender-select{
-		background: linear-gradient(103.76deg, #6253B8 -16.52%, #ED80C2 112.53%);
-box-shadow: 0px 10px 24px rgba(155, 81, 224, 0.2);
-color: #FFF;
+	background: linear-gradient(96.36deg, #6253B8 -14.68%, #ED80C2 116.59%) #ED80C2  ;
+	border: none;
+	box-shadow: 0px 10px 24px rgba(155, 81, 224, 0.2);
+	color: #FFF;
 	}
 
 
