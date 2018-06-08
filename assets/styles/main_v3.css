@@ -2160,7 +2160,7 @@ input[type=date]{
 		box-sizing: border-box;
 		
 		
-		min-height: 100vh;
+	
 	}
 
 
@@ -3831,7 +3831,7 @@ input[type=date]{
 		width: 100%;
 		
 		
-		min-height: 100vh;
+		
 		justify-content: flex-start;
 	}
 
