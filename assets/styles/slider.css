@@ -92,12 +92,24 @@
 		
 		width: auto;
 		max-width: 90%;
-
+		max-height: 90vh;
 		margin: auto;
 		height: auto;
 		background: #FFF;
 		align-items: stretch;
 		border-radius: 1em;
+
+	}
+	.lv-slider-video-container-forfile{
+		max-height: 100%;
+		max-width: 100%;
+		display: flex;
+
+	}
+	.lv-slider-video-container-forfile video{
+		max-height: 100%;
+		max-width: 100%;
+		margin: auto;
 
 	}
 
@@ -560,9 +572,12 @@
 	}
 	.lv-slider-video-container{
 		min-width: 40em;
+
 	}
 
-
+	.lv-slider-video-container-forfile{
+		min-width: 40em;
+	}
 
 	.lv-slider-left{
 		
