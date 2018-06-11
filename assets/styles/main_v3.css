@@ -1,8 +1,104 @@
 /* ICONS */
+
+
+.lv-circle-progress-bar-svg{
+	transform: rotate(-90deg);
+	display: flex;
+	margin: auto;
+	cursor: pointer;
+}
+
+.progress-bar__background {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 2;
+}
+.progress-bar__progress {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke: #FFF;
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 2;
+ 
+}
+.lv-uploadphot-progress-offspiner{
+	background: none !important;
+}
+
+.lv-circle-progress-bar-svg:hover .lv-progress-abor-line{
+	stroke: #F8728A;
+}
+
+
+
+
+
+
+
+
+
 .lv-allphotos-scroll{
 	max-height: 70vh;
 	overflow-y: scroll;
 }
+
+.lv-uploadphoto-progress-wrap{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+	height: 100%;
+	z-index: 500;
+	top:0;
+	color:#FFF;
+	text-align: center;
+	
+	
+	background-color: rgba(0,0,0,0.2);
+	
+}
+
+.lv-uploadphoto-progress-wrap:hover{
+	background-color: rgba(0,0,0,0.5);
+}
+.lv-uploadphot-progress-animate .lv-uploadphoto-progress-wrap{
+	background-color: rgba(0,0,0,0.0);
+	transition: background-color 0.1s linear;
+}
+.lv-uploadphoto-invalid{
+	background-color: rgba(255,0,0,0.2) !important;
+	border: solid 1px #F8728A;
+	
+	box-sizing: border-box;
+	border-radius: 0.5em;
+}
+
+
+.lv-uploadphot-progress-animate .lv-uploadimg--loader{
+	-webkit-filter: blur(0px);
+	filter: blur(0px);
+	transition: filter 0.1s linear;
+	transition: -webkit-filter 0.1s linear;
+}
+
+
+
+
+
+
+
+
+.lv-uploadimg--loader{
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
+	
+	
+	
+}
+
 
 /*SEARCH MENU */
 
@@ -287,16 +383,19 @@ input[type=date]{
   overflow: hidden;
   border-radius: 0.5em;
   cursor: pointer;
+  background: url('../imgs/preloader.svg') no-repeat center center;
 }
 
 .lv-photo-gallery-subitem {
   display: block;
 }
 
+
 .lv-photo-gallery-img {
   position: absolute;
   top: 0;
   width: 100%;
+
   vertical-align: bottom;
 }
 .lv-photo-gallery-item:hover .lv-photo-gallery-delete-button{
