@@ -171,12 +171,12 @@
 			.lv-slider-controls-wrap .lv-prev{
 				background-image: url('../imgs/prev.svg');
 				background-repeat: no-repeat;
-				width: 3em;
+				width: 50%;
 				height: 100%;
 				
 				
 				background-size: 0.6em;
-				background-position: 45% center;
+				background-position: 5% center;
 				cursor: pointer;
 			
 
@@ -184,14 +184,14 @@
 			.lv-slider-controls-wrap .lv-next{
 				background-image: url('../imgs/next.svg');
 				background-repeat: no-repeat;
-				width: 3em;
+				width: 50%;
 				height: 100%;
 				
 				
 				background-size: 0.6em;
 				margin-left: auto;
 			
-				background-position: 55% center;
+				background-position: 95% center;
 				cursor: pointer;
 
 			}
